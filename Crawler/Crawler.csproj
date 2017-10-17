@@ -57,6 +57,7 @@
     <Content Include="Demo\site.action.js" />
     <Content Include="Demo\sleep.js" />
     <Content Include="Demo\str2bytes.js" />
+    <Content Include="Task\cookie.js" />
     <Content Include="Task\task.js" />
   </ItemGroup>
   <ItemGroup>
@@ -68,6 +69,7 @@
     <None Include="Demo\site.action.bat" />
     <None Include="Demo\str2bytes.bat" />
     <None Include="Task\config.json" />
+    <None Include="Task\cookie.bat" />
     <None Include="Task\task.bat" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
