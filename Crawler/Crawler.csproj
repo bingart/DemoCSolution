@@ -45,12 +45,16 @@
   <ItemGroup>
     <Content Include="Demo\argu.js" />
     <Content Include="Demo\fetch.js" />
+    <Content Include="Demo\navigator.baidu.js" />
+    <Content Include="Demo\navigator.bing.js" />
+    <Content Include="Demo\navigator.taobao.js" />
     <Content Include="Demo\post.js" />
     <Content Include="Demo\render.js" />
     <Content Include="Demo\render_multi.js" />
     <Content Include="Demo\scroll.http.js" />
     <Content Include="Demo\scroll.js" />
     <Content Include="Demo\scroll.retry.js" />
+    <Content Include="Demo\site.action.js" />
     <Content Include="Demo\sleep.js" />
     <Content Include="Demo\str2bytes.js" />
     <Content Include="Task\task.js" />
@@ -61,7 +65,9 @@
     <None Include="Demo\scroll.error.bat" />
     <None Include="Demo\scroll.http.bat" />
     <None Include="Demo\scroll.retry.bat" />
+    <None Include="Demo\site.action.bat" />
     <None Include="Demo\str2bytes.bat" />
+    <None Include="Task\config.json" />
     <None Include="Task\task.bat" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
