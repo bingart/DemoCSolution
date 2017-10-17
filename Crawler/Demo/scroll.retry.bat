@@ -1,0 +1,1 @@
+phantomjs.exe scroll.retry.js http://www.google.com d:\google.png 10 1000 400 3

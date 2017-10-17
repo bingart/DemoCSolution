@@ -1,0 +1,1 @@
+phantomjs.exe scroll.js https://detail.tmall.com/item.htm?id=540677983314 d:\tmall.png 10 1000 400
