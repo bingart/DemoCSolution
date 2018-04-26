@@ -42,8 +42,18 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Doc\" />
+    <None Include="Doc\config4" />
+    <None Include="Doc\config5" />
+    <None Include="Doc\test_phantomjs.py" />
+    <None Include="Doc\test_stem.py" />
+    <None Include="Doc\test_stem_reload.py" />
+    <None Include="Doc\torrc4" />
+    <None Include="Doc\torrc5" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Doc\mobile_ua_list.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

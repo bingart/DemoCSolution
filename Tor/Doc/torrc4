@@ -1,0 +1,10 @@
+SocksPort 9350 # what port to open for local application connections
+SocksBindAddress 127.0.0.1 # accept connections only from localhost
+AllowUnverifiedNodes middle,rendezvous
+Log notice syslog
+RunAsDaemon 1
+User debian-tor
+Group debian-tor
+DataDirectory /var/lib/tor4
+ControlPort 9351
+#HashedControlPassword 16:872860B76453A77D60CA2BB8C1A7042072093276A3D701AD684053EC4C
