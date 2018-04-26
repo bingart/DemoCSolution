@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crawler", "Crawler\Crawler.csproj", "{26017806-DFEA-40DC-A9D0-1D8AA5643C48}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tor", "Tor\Tor.csproj", "{2139AE72-0EFD-4AC2-88D5-DEC7AB27F2CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{26017806-DFEA-40DC-A9D0-1D8AA5643C48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26017806-DFEA-40DC-A9D0-1D8AA5643C48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26017806-DFEA-40DC-A9D0-1D8AA5643C48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2139AE72-0EFD-4AC2-88D5-DEC7AB27F2CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2139AE72-0EFD-4AC2-88D5-DEC7AB27F2CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2139AE72-0EFD-4AC2-88D5-DEC7AB27F2CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2139AE72-0EFD-4AC2-88D5-DEC7AB27F2CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
