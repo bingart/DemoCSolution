@@ -32,10 +32,10 @@ if __name__ == '__main__':
     print("Tor is running pid %s" % controller.get_pid())
     
     circuits = controller.get_circuits()
-    print('circuits=')
-    print(circuits)
+	print('circuits=')
+	print(circuits)
     for c in circuits:
-        print ('c=' + str(c))
+        print ('c: {0}'.format(c.id))
 
     streams = controller.get_streams()
     print('streams=')
