@@ -15,7 +15,9 @@
 						hrefList.push(href);
 						_pf_log('href=' + href);
 						// Load second page, only for test
-						break;
+						if (i > 3) {
+							break;
+						}
 					} else {
 						_pf_log('href=null');
 					}
@@ -39,13 +41,23 @@
 			var el = $('<div></div>');
 			el.html(innerHtml);
 			var results = $('#b_results li.b_algo', el);
-			var len = results.len;
+			var len = results.length;
 			_pf_log('parse: len=' + len);
-			results.each(function() {
-				var h = $(this)[0].outerHTML;
-				_pf_log('parse: html=' + h);
-			});
-			loadPage();
+			if (len > 0) {
+				$('#b_results li.b_algo').last().after('<hr class="page-break"/>');
+				var flag = true;
+				results.each(function() {
+					var h = $(this)[0].outerHTML;
+					_pf_log('parse: html=' + h);
+					if (flag) {
+						flag = false;
+						$('#b_results hr.page-break').last().after(h);
+					} else {
+						$('#b_results li.b_algo').last().after(h);
+					}
+				});
+				loadPage();
+			}
 		}
 	});
 })();
