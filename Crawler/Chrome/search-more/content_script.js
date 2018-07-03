@@ -15,6 +15,8 @@
 					if (href != null) {
 						hrefList.push(href);
 						_pf_log('href=' + href);
+						// Load second page, only for test
+						break;
 					} else {
 						_pf_log('href=null');
 					}
@@ -33,8 +35,12 @@
 				return;
 			}
 		}
-		function parsePage(url, html) {
-			_pf_log('parsePage, url=' + url + ', size=' + html.length);
+		function parsePage(url, innerHtml) {
+			_pf_log('parsePage, url=' + url + ', size=' + innerHtml.length);
+			var el = $('<div></div>');
+			el.html(innerHtml);
+			var len = $('#b_results li.b_algo', el).length;
+			_pf_log('parse: len=' + len);
 			loadPage();
 		}
 	});
