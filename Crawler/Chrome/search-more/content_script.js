@@ -5,7 +5,6 @@
 		$(document).ready(function(){
 			loadMore();
 		});
-		
 		function loadMore() {
 			var len = $('ul.sb_pagF li a').length;
 			_pf_log('len=' + len);
@@ -39,8 +38,13 @@
 			_pf_log('parsePage, url=' + url + ', size=' + innerHtml.length);
 			var el = $('<div></div>');
 			el.html(innerHtml);
-			var len = $('#b_results li.b_algo', el).length;
+			var results = $('#b_results li.b_algo', el);
+			var len = results.len;
 			_pf_log('parse: len=' + len);
+			results.each(function() {
+				var h = $(this)[0].outerHTML;
+				_pf_log('parse: html=' + h);
+			});
 			loadPage();
 		}
 	});
