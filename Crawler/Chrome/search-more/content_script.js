@@ -15,7 +15,7 @@
 						hrefList.push(href);
 						_pf_log('href=' + href);
 						// Load second page, only for test
-						if (i > 3) {
+						if (i > 5) {
 							break;
 						}
 					} else {
