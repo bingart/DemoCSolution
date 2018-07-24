@@ -1,0 +1,21 @@
+﻿{
+	"manifest_version": 2,
+	"name": "js crawler",
+	"version": "0.0.1",
+	"description": "JS crawler with dispatcher",
+	"icons": {
+		"48": "icon48.png",
+		"128": "icon128.png",
+		"512": "icon512.png"
+	},
+	"permissions":[
+		"tabs",
+		"https://*/*",
+		"http://*/*"
+	],
+	"content_scripts":[{
+		"matches":["<all_urls>"],
+		"run_at": "document_end",
+		"js":["content_script.js"]
+	}]
+}
