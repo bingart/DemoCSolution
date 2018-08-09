@@ -49,6 +49,6 @@
 		setCaptchaFocus();
 		setTimeout(function() {
 			fetchImage();
-		}, 3000);
+		}, 5000);
 	};
 })();
