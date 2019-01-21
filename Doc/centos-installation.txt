@@ -1,0 +1,532 @@
+
+Install HTQ from centos:
+
+TOC
+0. OS
+1. Net-Tools
+2. MySQL
+2.1 Init
+2.2 Replication
+3. Nginx/PHP
+4. GlusterdFS/NFS
+5. CertBot
+6. supervisord
+7. go-mysql-es
+8. elasticsearch
+9. redis
+10. install phpmyadmin
+11. Backup
+12. Wordpress Domain Change
+13. lsyncd
+14. chrome
+15. python3
+16. redis
+
+#####################################################################################
+root/9IN.com
+
+0. OS ###############################################################################
+
+# uname -a
+>> Linux shotstcosv15 3.10.0-514.el7.x86_64 #1 SMP Tue Nov 22 16:42:41 UTC 2016 x86_64 x86_64 x86_64 GNU/Linux
+# cat /etc/centos-release
+# vi /etc/selinux/config
+SELINUX=disabled -- otherwise 404 error for php-fpm
+# reboot  -- take it into effect
+
+# groupadd --gid 1001 nginx   ---------- same gid as master
+# useradd -g nginx --uid 1001 nginx ------------ same uid as master
+# groups nginx  -- check if user nginx is member of group nginx
+or modify group id and user id for nginx/nginx
+# systemctl stop nginx	--------- if exists
+# systemctl stop php-fpm -------- if exists
+# groupmod -g 1001 nginx
+# usermod -u 1001 nginx
+
+1. Install net-tools
+
+# sudo yum install net-tools
+# sudo yum install nmap netstat
+# sudo yum install lsof
+# sudo yum install wget
+# sudo yum install rsync
+# systemctl disable firewalld
+# systemctl stop firewalld
+# systemctl status firewalld
+
+or working with firewalld
+# firewall-cmd --permanent --add-port=100/tcp
+# firewall-cmd --permanent --add-port=9350/tcp
+# firewall-cmd --permanent --add-port=9351/tcp
+# firewall-cmd --reload
+# firewall-cmd --list-services
+
+2. Install mysql ###############################################################################
+
+# sudo wget https://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm
+# sudo md5sum mysql57-community-release-el7-9.noarch.rpm
+# sudo rpm -ivh mysql57-community-release-el7-9.noarch.rpm
+# sudo yum install mysql-server mysql-client
+# sudo systemctl start mysqld
+# sudo systemctl status mysqld
+# sudo grep 'temporary password' /var/log/mysqld.log
+# sudo mysql_secure_installation
+root / msnP@ssw0rd01!
+
+refer: https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-centos-7
+
+2.1 Create WP database
+mysql> create database wp_htq;
+mysql> CREATE USER 'wp_admin'@'172.%' IDENTIFIED BY 'wpAdmin@2018';
+mysql> GRANT ALL PRIVILEGES ON wp_htq.* TO 'wp_admin'@'172.%' IDENTIFIED BY 'wpAdmin@2018' WITH GRANT OPTION;
+mysql> FLUSH PRIVILEGES;
+
+mysql> CREATE USER 'atm'@'172.%' IDENTIFIED BY 'atm';
+mysql> GRANT ALL PRIVILEGES ON atm.* TO 'atm'@'172.%' IDENTIFIED BY 'atm' WITH GRANT OPTION;
+mysql> FLUSH PRIVILEGES;
+
+2.2 Replication
+
+refer to: How To Set Up Master Slave Replication in MySQL.txt.
+refer to: https://dev.mysql.com/doc/refman/5.5/en/replication-howto.html
+
+2.2.1 Master Steps
+
+Setting the Replication Master Configuration
+# vi /etc/my.cnf
+[mysqld]
+log-bin=mysql-bin
+server-id=1
+
+Creating a User for Replication
+mysql> CREATE USER 'repl'@'%' IDENTIFIED BY 'password';
+mysql> GRANT REPLICATION SLAVE ON *.* TO 'repl'@'%';
+
+Obtaining the Replication Master Binary Log Coordinates
+mysql> FLUSH TABLES WITH READ LOCK;
+mysql > SHOW MASTER STATUS;
++------------------+----------+--------------+------------------+
+| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB |
++------------------+----------+--------------+------------------+
+| mysql-bin.000001 | 747      |              |                  |
++------------------+----------+--------------+------------------+
+
+Creating a Data Snapshot Using mysqldump
+# mysqldump -u root -p --all-databases --master-data > dbdump.db
+copy dbdump.db to SLAVE
+
+Released the read lock:
+mysql> UNLOCK TABLES;
+
+2.2.2 Slave Steps
+
+Setting the Replication Slave Configuration
+# vi /etc/my.cnf
+[mysqld]
+server-id=2
+
+Setting Up Replication with Existing Data
+# mysql -u root -p < dbdump.db
+
+Configure the slave with the replication coordinates from the master
+mysql> CHANGE MASTER TO
+    ->     MASTER_HOST='master_host_name',
+    ->     MASTER_USER='replication_user_name',
+    ->     MASTER_PASSWORD='replication_password',
+    ->     MASTER_LOG_FILE='recorded_log_file_name',
+    ->     MASTER_LOG_POS=recorded_log_position;
+mysql> CHANGE MASTER TO MASTER_HOST='172.16.40.145',MASTER_USER='repl', MASTER_PASSWORD='password', MASTER_LOG_FILE='mysql-bin.000001', MASTER_LOG_POS=747;
+
+Start the slave threads:
+mysql> START SLAVE;
+
+Validate:
+mysql> SHOW SLAVE STATUS\G;
+
+Stop Slave:
+MySQL> STOP SLAVE;
+
+2.3 open query log online
+
+mysql> SET GLOBAL general_log = 'ON';
+mysql> SET GLOBAL general_log_file = '/data/log/mysql/query.log';
+mysql> SET GLOBAL general_log = 'OFF';
+
+
+3. Install nginx / php7 ###############################################################################
+
+# sudo yum install epel-release
+# sudo yum install nginx
+# sudo systemctl start nginx
+# sudo systemctl status nginx
+# sudo systemctl enable nginx  --- to start nginx automatically when linux start
+# sudo nginx -T
+
+refer: https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-centos-7
+
+Remove all existing PHP packages:
+# yum list installed *php*   -- get a list of all installed PHP packages
+# yum remove php php-cli php-common php-gd php-ldap php-mysql php-odbc php-pdo php-pear php-pecl-apc php-pecl-memcache php-pgsql php-soap php-xml php-xmlrpc   -- removing PHP, we must remove all of the above packages. In the terminal, execute the following command.
+
+# cd ~
+# curl 'https://setup.ius.io/' -o setup-ius.sh
+# sudo bash setup-ius.sh
+# sudo yum install php71u-fpm-nginx php71u-cli php71u-mysqlnd php71u-mbstring php71u-json php71u-mcrypt
+# sudo yum install php71u-devel
+# sudo yum install php71u-pear   -- for pecl
+# sudo yum install php71u-pecl-redis  -- for redis extension
+# sudo php -i | grep "Loaded Configuration File"
+# sudo php -m  -- list all modules
+# sudo vi /etc/php-fpm.d/www.conf
+uncomment:
+;user = php-fpm
+;group = php-fpm
+user = nginx
+group = nginx
+uncomment:
+listen = 127.0.0.1:9000
+listen.acl_users = nginx
+# sudo vi /etc/nginx/conf.d/php-fpm.conf
+uncomment:
+server 127.0.0.1:9000;
+# sudo vi /etc/nginx/default.d/php.conf
+location ~ \.php$ {
+    try_files $uri =404;
+    fastcgi_intercept_errors on;
+    fastcgi_index  index.php;
+    include        fastcgi_params;
+    fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+    fastcgi_pass   php-fpm;
+}
+# sudo systemctl restart php-fpm
+# sudo systemctl status php-fpm
+# sudo systemctl restart php-fpm
+# sudo systemctl status php-fpm
+# sudo systemctl enable php-fpm   -- to start php-fpm automatically when linux start
+# sudo vi /var/www/html/info.php
+    /var/www/html
+    /var/www/
+    /usr/share/nginx/html
+<?php
+phpinfo();
+?>
+
+# wget http://server_domain_name_or_IP/info.php
+
+refer: https://www.digitalocean.com/community/tutorials/how-to-upgrade-to-php-7-on-centos-7
+
+4. Install NFS ###############################################################################
+
+Server Side: (172.16.40.139)
+# yum install nfs-utils
+# systemctl enable nfs-server.service
+# systemctl start nfs-server.service
+# systemctl status nfs-server.service
+
+Client Side (172.16.40.145):
+# yum install nfs-utils
+
+Server Side:
+# vi /etc/exports
+/data/wp-sync 172.16.40.145(rw,sync,no_root_squash,no_subtree_check)
+
+Client Side:
+# mount 172.16.40.139:/data/wp-sync /data/wp-sync
+# df -h
+# mount
+# touch /data/wp-sync/test.txt
+# vi /etc/fstab 
+172.16.40.139:/data/wp-sync /data/wp-sync nfs rw,sync,hard,intr  0  0
+# reboot
+# df -h
+To remove:
+# sudo umount /data/wp-sync
+
+GlusterdFS
+refer: https://wiki.centos.org/HowTos/GlusterFSonCentOS
+Server Side:
+# sudo gluster peer status
+# sudo gluster volume info all
+# sudo systemctl enable glusterd.service   ---- Enable and start glusterfsd.service on both nodes:
+# sudo systemctl status glusterd.service
+# sudo systemctl start glusterd.service
+# sudo systemctl stop glusterd.service
+
+Client Side:
+# sudo gluster peer status
+# sudo gluster volume status
+# sudo gluster volume start share force   ---- share is the name of volume
+# sudo systemctl enable glusterd.service   ---- Enable and start glusterfsd.service on both nodes:
+# sudo systemctl status glusterd.service
+# sudo systemctl start glusterd.service
+# sudo systemctl stop glusterd.service
+
+5. CertBot
+
+# yum install certbot
+The default conf location: /etc/letsencrypt
+# certbot certificates ---------------------- list all certs 
+# certbot certonly --staging --dry-run --webroot -w /data/wp-sync/wp-data/html/ -d www.trackglucose.com --------------- test to request new certbot
+# certbot certonly --webroot -w /data/wp-sync/wp-data/html/ -d www.trackglucose.com --------------- request new certbot
+# certbot renew -------------------------- renew all existing certs
+
+6. supervisord
+
+# easy_install supervisor
+or 
+# pip install supervisor
+refer: http://supervisord.org/installing.html#installing-to-a-system-with-internet-access
+# vi /etc/supervisord.conf
+[program:sync_mysql_to_es]
+command=/opt/go-mysql-es/mysql-es.sh
+autostart=true
+startsecs=10
+startretries=3
+autorestart=true
+user=mysqles
+
+# /usr/bin/python /usr/bin/supervisord -c /etc/supervisord.conf
+
+7. go-mysql-es
+
+download go package from https://golang.org/dl/
+# cd /root
+# tar xvzf go1.11.linux-amd64.tar.gz
+# mv go /usr/local
+# vi .bashrc
+export GOROOT=/usr/local/go
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+export GOPATH=$HOME/GOPROJ
+# cd /root
+# source .bashrc
+# go
+# go version
+# go env
+
+https://github.com/siddontang/go-mysql-elasticsearch
+# yum install git
+# go get github.com/siddontang/go-mysql-elasticsearch, it will print some messages in console, skip it. :-)
+# cd $GOPATH/src/github.com/siddontang/go-mysql-elasticsearch
+# make
+# cd bin
+that's it!
+
+#!/usr/bin/bash
+cd /opt/go-mysql-es && ./go-mysql-elasticsearch -config=river.toml
+
+troubleshooting:
+1. bin log not found
+# stop go-mysql-elasticsearch
+# cd /data/mysql-es
+# remove master.info
+# start go-mysql-elasticsearch
+
+8. elasticsearch
+download jdk8 rpm from orcale
+# sudo yum localinstall jdk-8u161-linux-x64.rpm
+refer: https://www.digitalocean.com/community/tutorials/how-to-install-java-on-centos-and-fedora
+# cd /etc/zypp/repos.d/
+# vi elasticsearch.repo
+[elasticsearch-6.x]
+name=Elasticsearch repository for 6.x packages
+baseurl=https://artifacts.elastic.co/packages/6.x/yum
+gpgcheck=1
+gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch
+enabled=1
+autorefresh=1
+type=rpm-md
+# sudo yum install elasticsearch
+# vi /etc/elasticsearch/elasticsearch.yml
+network.host: 0.0.0.0
+# systemctl start elasticsearch
+To enable auto start for elasticsearch:
+# sudo /bin/systemctl daemon-reload
+# sudo /bin/systemctl enable elasticsearch.service
+# sudo systemctl start elasticsearch.service
+# sudo systemctl stop elasticsearch.service
+refer: https://www.elastic.co/guide/en/elasticsearch/reference/current/rpm.html
+
+9. Redis
+
+# yum install epel-release
+# yum install redis
+# systemctl start redis.service
+# systemctl start redis.service
+If you’d like Redis to start on boot, you can enable it with the enable command:
+# systemctl enable redis
+You can check Redis’s status by running the following:
+# systemctl status redis.service
+$ redis-cli ping
+PONG
+
+# vi /etc/redis.conf
+bind 127.0.0.1
+to
+bind 0.0.0.0
+
+
+10. install phpmyadmin
+
+download phpMyAdmin-4.8.2-all-languages.zip
+# unzip phpMyAdmin-4.8.2-all-languages.zip
+# mv phpMyAdmin-4.8.2-all-languages /data/wp-app/phpMyAdmin
+# vi /etc/nginx/conf.d/phpmyadmin.conf
+	server {
+        listen       80;
+        server_name  www.phpmyadmin.com;
+        root         /data/wp-app/phpMyAdmin;
+
+        access_log      /data/logs/phpmyadmin/access.log;
+        error_log       /data/logs/phpmyadmin/error.log;
+
+        add_header X-Frame-Options SAMEORIGIN;
+        location / {
+                index   index.php index.html index.htm;
+                if ( -f $request_filename) {
+                        expires 14d;
+                        break;
+                }
+                if ( !-e $request_filename) {
+                        rewrite ^(.+)$ /index.php?q=$1 last;
+                }
+                location ~ \.php$ {
+                        fastcgi_pass    127.0.0.1:9000;
+                        fastcgi_index   index.php;
+                        fastcgi_param   SCRIPT_FILENAME $document_root$fastcgi_script_name;
+                        fastcgi_param   PATH_INFO       $fastcgi_script_name;
+                        include /etc/nginx/fastcgi_params;
+                }
+        }
+    }
+# chown nginx:nginx /var/lib/php/fpm/session -R
+# chmod 777 /var/lib/php/fpm/session/ -R
+# systemctl restart php-fpm
+
+11. Backup
+
+Remove Sync:
+#rsync -rltzv --omit-dir-times --delete --exclude=wp-content  root@centos_a:/data/wp-app/htq/ /data/wp-app/htq/
+
+12. Wordpress Domain Change
+Dashboard - Settings - General
+change: site url AND wordpress url with new domain
+mysql> UPDATE wp_posts SET post_content = REPLACE(post_content, 'http://wp.com/', 'http://wp2.com/') WHERE post_status = 'publish' AND post_content LIKE '%http://wp.com/%';
+change nginx configuration
+
+13. lsyncd
+
+lsyncd is for instantly unidirectional replication.
+
+refer to:
+http://blog.51cto.com/openlinuxfly/1679279
+https://www.linuxtechi.com/install-and-use-lsyncd-on-centos-7-rhel-7/
+http://yallalabs.com/linux/how-to-install-and-configure-lsyncd-on-centos-7-rhel-7/
+https://www.jianshu.com/p/0ecac4f6baf2
+https://github.com/axkibe/lsyncd/issues/394
+https://github.com/guard/listen/wiki/Increasing-the-amount-of-inotify-watchers
+
+Master: (172.16.40.139) Slave: (172.16.40.145)
+Master Side:
+# cat /proc/sys/fs/inotify/max_user_watches
+# echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+  -- default is 8192
+# cat /proc/sys/fs/inotify/max_queued_events
+# echo fs.inotify.max_queued_events=50000 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+  -- default is 16384
+# ssh-keygen -t rsa
+# ssh-copy-id -i /root/.ssh/id_rsa.pub root@172.16.40.145
+# -- (optional) yum install epel-release
+# yum install lsyncd -y
+# vi /etc/lsyncd.conf 
+settings {
+   logfile    = "/tmp/lsyncd.log",
+   statusFile = "/tmp/lsyncd.status",
+   statusInterval = 5,
+   nodaemon = true,
+}
+sync {
+    default.rsync,
+    source    = "/data/wp-sync",
+    target    = "root@172.16.40.145:/data/wp-sync",
+    delete = true,
+    exclude = { ".swp" },
+    delay = 1,
+    rsync = {
+        binary = "/usr/bin/rsync",
+        archive = true,
+        compress = true,
+        verbose  = true,
+        rsh = "/usr/bin/ssh -p 22 -o StrictHostKeyChecking=no",
+        _extra    = {"--bwlimit=200"},
+    }
+}
+sync {
+    default.rsync,
+    source    = "/var/www/html",
+    target    = "root@172.16.40.145:/var/www/html",
+    delete = true,
+    exclude = { ".swp" },
+    delay = 1,
+    rsync = {
+        binary = "/usr/bin/rsync",
+        archive = true,
+        compress = true,
+        verbose  = true,
+        rsh = "/usr/bin/ssh -p 22 -o StrictHostKeyChecking=no",
+        _extra    = {"--bwlimit=200"},
+    }
+}
+
+############# Note #############
+rsync alternative configuration:
+rsync = { rsh = "/usr/bin/ssh -l root -i /root/.ssh/id_rsa" }
+
+# systemctl enable lsyncd
+# systemctl start lsyncd
+# systemctl status lsyncd
+# tail -f /tmp/lsyncd.status
+verify two source and target, add and delete and modify files at server side, check file at slave side
+
+14. Chrome
+
+# wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+# wget https://chromedriver.storage.googleapis.com/2.45/chromedriver_linux64.zip
+# sudo yum install ./google-chrome-stable_current_*.rpm
+# unzip chromedriver_linux64.zip
+
+15. Python3
+Python2.7 is installed by default.
+# yum install -y python36u python36u-libs python36u-devel python36u-pip
+# python3.6 -v
+# pip3.6 install requests webdriver pymsql maxminddb
+# pip3.6 install pysocks -- for proxy of socks5
+
+16. Redis & PHP Session
+
+# yum install redis
+# vi /etc/redis.conf
+comment
+# bind 127.0.0.1
+protected-mode yes  -- enable remote connection
+
+validation:
+http://htqa.dev.chn.gbl/wp-content/plugins/post-tester/redis.php
+https://healthtopquestions.com/wp-content/plugins/post-tester/redis.php
+
+Update the php ini file
+# sudo php -i | grep "Loaded Configuration File"
+# sudo vi /etc/php.ini
+session.save_handler = redis
+session.save_path = "tcp://172.16.40.139:6379?auth=foobared"
+
+Update php-fpm configuration to disable session configuration:
+# sudo vi /etc/php-fpm.d/www.conf
+comment following lines, which will overwrite php.ini
+;php_value[session.save_handler] = files
+;php_value[session.save_path]    = /var/lib/php/fpm/session
+
+validation:
+phpinfo() to validate configurations
+http://htqa.dev.chn.gbl/wp-content/plugins/post-tester/session.php
+https://healthtopquestions.com/wp-content/plugins/post-tester/session.php
+
