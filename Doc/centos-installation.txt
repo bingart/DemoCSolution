@@ -20,7 +20,7 @@ TOC
 13. lsyncd
 14. chrome
 15. python3
-16. redis
+16. PHP Session
 
 #####################################################################################
 root/9IN.com
@@ -487,6 +487,12 @@ rsync = { rsh = "/usr/bin/ssh -l root -i /root/.ssh/id_rsa" }
 # tail -f /tmp/lsyncd.status
 verify two source and target, add and delete and modify files at server side, check file at slave side
 
+FAQ: ssh-copy-id to rebuild insist for master and slave
+
+Wed Jan 23 16:26:33 2019 Error: Temporary or permanent failure on startup of /data/wp-sync/wp-data/ -> root@172.20.123.36:/data/wp-sync/wp-data/. Terminating since "insist" is not set.
+
+FIX: 
+
 14. Chrome
 
 # wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
@@ -501,7 +507,7 @@ Python2.7 is installed by default.
 # pip3.6 install requests webdriver pymsql maxminddb
 # pip3.6 install pysocks -- for proxy of socks5
 
-16. Redis & PHP Session
+16. PHP Session
 
 # yum install redis
 # vi /etc/redis.conf
