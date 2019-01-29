@@ -21,6 +21,7 @@ TOC
 14. chrome
 15. python3
 16. PHP Session
+17. Wordpress File Sync
 
 #####################################################################################
 root/9IN.com
@@ -536,3 +537,28 @@ phpinfo() to validate configurations
 http://htqa.dev.chn.gbl/wp-content/plugins/post-tester/session.php
 https://healthtopquestions.com/wp-content/plugins/post-tester/session.php
 
+17. Wordpress File Sync
+
+proxy pass /wp-admin/ to main node;
+gibook_server is set in hosts;
+rewrite /wp-admin/*;
+
+See gibook.top.conf
+
+		location /wp-admin/ {
+			sendfile off;
+			rewrite /wp-admin/(.*) /wp-admin/$1 break;
+			
+			proxy_pass http://gibook_server:8004/;
+			proxy_redirect default;
+			
+			proxy_set_header Host gibook.top;
+			proxy_set_header X-Real-IP $remote_addr;
+			proxy_set_header Via $hostname;
+			proxy_set_header X-Forwarded-For $remote_addr;
+			proxy_set_header X-Forwarded-Proto $scheme;
+			proxy_max_temp_file_size 0;
+			
+			client_max_body_size 10m;
+			client_body_buffer_size 128k;
+		}
