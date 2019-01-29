@@ -547,9 +547,7 @@ See gibook.top.conf
 
 		location /wp-admin/ {
 			sendfile off;
-			rewrite /wp-admin/(.*) /wp-admin/$1 break;
-			
-			proxy_pass http://gibook_server:8004/;
+			proxy_pass http://gibook_server:8004/wp-admin/;
 			proxy_redirect default;
 			
 			proxy_set_header Host gibook.top;
@@ -562,3 +560,25 @@ See gibook.top.conf
 			client_max_body_size 10m;
 			client_body_buffer_size 128k;
 		}
+
+		#########################################################################################################
+
+		location = /a {
+			proxy_pass http://127.0.0.1:8080/a;
+			...
+		}
+		location ^~ /a/ {
+			proxy_pass http://127.0.0.1:8080/a/;
+			...
+		}
+		As stated in nginx documentation if proxy_pass used without URI (i.e. without path after server:port) nginx will put URI from original request exactly as it was with all double slashes, ../ and so on.
+		
+		On the other side, URI in proxy_pass acts like alias directive, means nginx will replace part that matches location prefix (in out case it's /a in first location and /a/ is second) with URI in proxy_pass directive (which I intentionally made the same as location prefix) so URI will be the same as requested but normalized (without doule slashes and all that staff). Be careful with trailing slashes. Nginx replaces part literally and you could end up with some strange url.
+		
+		Here is an example with trailing slash in location, but no trailig slash in proxy_pass.
+		
+		location /one/ {
+			proxy_pass http://127.0.0.1:8080/two;
+			...
+		}
+		if one go to address http://yourserver.com/one/path/here?param=1 nginx will proxy request to http://127.0.0.1/twopath/here?param=1. See how two and path concatenates.
