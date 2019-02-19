@@ -176,6 +176,8 @@ Remove all existing PHP packages:
 # sudo yum install php71u-devel
 # sudo yum install php71u-pear   -- for pecl
 # sudo yum install php71u-pecl-redis  -- for redis extension
+# sudo yum install ImageMagick ImageMagick-devel -- optional, for image php
+# sudo yum install php71u-imagick -- optional, for image php, wrapper of ImageMagick
 # sudo php -i | grep "Loaded Configuration File"
 # sudo php -m  -- list all modules
 # sudo vi /etc/php-fpm.d/www.conf
