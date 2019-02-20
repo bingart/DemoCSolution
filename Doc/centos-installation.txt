@@ -213,6 +213,11 @@ location ~ \.php$ {
 <?php
 phpinfo();
 ?>
+# sudo php --version
+# sudo php -i | more -- same as phpinfo()
+# sudo php --ini -- dump ini files
+
+For php installation with source code, use php -i to locate ini path, create php.ini and put new extensions configuration.
 
 # wget http://server_domain_name_or_IP/info.php
 
