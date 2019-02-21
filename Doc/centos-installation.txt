@@ -368,10 +368,11 @@ $ redis-cli ping
 PONG
 
 # vi /etc/redis.conf
-bind 127.0.0.1
-to
+#bind to all
+#bind 127.0.0.1
 bind 0.0.0.0
-
+# disable auth
+#requirepass foobared
 
 10. install phpmyadmin
 
@@ -531,7 +532,8 @@ Update the php ini file
 # sudo php -i | grep "Loaded Configuration File"
 # sudo vi /etc/php.ini
 session.save_handler = redis
-session.save_path = "tcp://172.16.40.139:6379?auth=foobared"
+session.save_path = "tcp://172.16.40.139:6379?weight=1&auth=foobared"  -- with auth
+session.save_path = "tcp://172.16.40.139:6379?weight=1"                -- without auth
 
 Update php-fpm configuration to disable session configuration:
 # sudo vi /etc/php-fpm.d/www.conf
