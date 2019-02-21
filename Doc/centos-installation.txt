@@ -172,7 +172,7 @@ Remove all existing PHP packages:
 # cd ~
 # curl 'https://setup.ius.io/' -o setup-ius.sh
 # sudo bash setup-ius.sh
-# sudo yum install php71u-fpm-nginx php71u-cli php71u-mysqlnd php71u-mbstring php71u-json php71u-mcrypt
+# sudo yum install php71u-fpm-nginx php71u-cli php71u-mysqlnd php71u-mbstring php71u-json php71u-mcrypt php71u-gd 
 # sudo yum install php71u-devel
 # sudo yum install php71u-pear   -- for pecl
 # sudo yum install php71u-pecl-redis  -- for redis extension
