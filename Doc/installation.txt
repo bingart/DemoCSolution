@@ -654,7 +654,7 @@ opcache.fast_shutdown=1
 
 copy php-fpm.conf
 # sudo vi /usr/local/etc/php-fpm.conf
-paste file content of php-fpm.conf
+paste file content of php-fpm.conf  -- note: session.save_handler and save_path is disabled, use definition of php.ini, see section 16.
 
 copy www.conf
 # sudo mkdir /usr/local/etc/php-fpm.d
