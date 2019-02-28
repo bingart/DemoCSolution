@@ -272,7 +272,14 @@ Client Side:
 
 5. CertBot
 
+# pip uninstall requests
+# pip uninstall urllib3
+# yum remove python-urllib3
+# yum remove python-requests
+# yum install python-urllib3
+# yum install python-requests
 # yum install certbot
+
 The default conf location: /etc/letsencrypt
 # certbot certificates ---------------------- list all certs 
 # certbot certonly --staging --dry-run --webroot -w /data/wp-sync/wp-data/html/ -d www.trackglucose.com --------------- test to request new certbot
