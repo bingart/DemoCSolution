@@ -23,6 +23,7 @@ TOC
 16. PHP Session
 17. Wordpress File Sync
 18. build php by source code
+19. Reindex
 
 #####################################################################################
 root/9IN.com
@@ -679,3 +680,11 @@ validate
 # sudo systemctl status php-fpm
 # sudo systemctl start php-fpm
 # sudo systemctl restart php-fpm
+
+19 Reindex
+
+a. create new template -- optional, if using new template
+b. create new index with new template -- optional, if using new template
+c. invoke api.php of post-indexer to recreate all index
+d. test new index
+e. move alias
