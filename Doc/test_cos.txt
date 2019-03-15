@@ -677,12 +677,16 @@ log_errors = On
 post_max_size = 5M
 upload_max_filesize = 4M
 
+zend_extension=opcache.so
 opcache.enable=1
-opcache.memory_consumption=64
+opcache.memory_consumption=128
 opcache.interned_strings_buffer=16
-opcache.max_accelerated_files=7000
+opcache.max_accelerated_files=8000
 opcache.validate_timestamps=0 ;set this to 1 on production server
+opcache.revalidate_freq=300
 opcache.fast_shutdown=1
+opcache.enable_cli=1
+
 #########################################
 
 copy php-fpm.conf
