@@ -175,12 +175,15 @@ Remove all existing PHP packages:
 # cd ~
 # curl 'https://setup.ius.io/' -o setup-ius.sh
 # sudo bash setup-ius.sh
-# sudo yum install php71u-fpm-nginx php71u-cli php71u-mysqlnd php71u-mbstring php71u-json php71u-mcrypt php71u-gd 
+# sudo yum install php71u-fpm-nginx php71u-cli php71u-mysqlnd php71u-mbstring php71u-json php71u-mcrypt php71u-gd php71u-opcache php71u-pdo php71u-pear php71u-pecl-igbinary php71u-devel php71u-pecl-redis php71u-pecl-memcache php71u-pecl-memcached php71u-process php71u-xml php71u-json
 # sudo yum install php71u-devel
 # sudo yum install php71u-pear   -- for pecl
 # sudo yum install php71u-pecl-redis  -- for redis extension
 # sudo yum install ImageMagick ImageMagick-devel -- optional, for image php
 # sudo yum install php71u-imagick -- optional, for image php, wrapper of ImageMagick
+
+yum install php71u php71u-cli php71u-common php71u-fpm php71u-gd php71u-mbstring php71u-mysqlnd php71u-opcache php71u-pdo php71u-pear php71u-pecl-igbinary php71u-pecl-memcache php71u-pecl-memcached php71u-process php71u-xml php71u-json
+
 # sudo php -i | grep "Loaded Configuration File"
 # sudo php -m  -- list all modules
 # sudo vi /etc/php-fpm.d/www.conf
