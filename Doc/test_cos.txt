@@ -21,6 +21,7 @@ TOC
 14. chrome
 15. python3
 16. PHP Session
+16.1 php-redis build
 17. Wordpress File Sync
 18. build php by source code
 19. Reindex
@@ -554,6 +555,25 @@ validation:
 phpinfo() to validate configurations
 http://htqa.dev.chn.gbl/wp-content/plugins/post-tester/session.php
 https://healthtopquestions.com/wp-content/plugins/post-tester/session.php
+
+16.1 php-redis build
+
+build php-redis
+download phpredis-master.zip with lastest stable version: https://github.com/phpredis/phpredis/tree/master
+# unzip phpredis-master.zip
+# phpize
+# ./configure --with-php-config=/usr/local/bin/php-config -- see php build
+# make
+# make test
+# make install -- the redis.so will be copy to  /usr/local/php7/lib/php/extensions/no-debug-non-zts-20160303/
+
+build igbinary
+download igbinary-3.0.0.zip with latest stable version: https://github.com/igbinary/igbinary/tree/v3
+# phpize
+# ./configure
+# make
+# make test
+# make install -- the igbinary.so will be copy to  /usr/local/php7/lib/php/extensions/no-debug-non-zts-20160303/
 
 17. Wordpress File Sync
 
