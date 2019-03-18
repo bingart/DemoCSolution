@@ -679,13 +679,17 @@ upload_max_filesize = 4M
 
 zend_extension=opcache.so
 opcache.enable=1
-opcache.memory_consumption=128
+opcache.enable_cli=1
+opcache.memory_consumption=256
 opcache.interned_strings_buffer=16
 opcache.max_accelerated_files=8000
-opcache.validate_timestamps=0 ;set this to 1 on production server
-opcache.revalidate_freq=300
+opcache.validate_timestamps=0 ;set this to 1 on test server, or Two ways to reset opcache below.
+opcache.revalidate_freq=5
 opcache.fast_shutdown=1
-opcache.enable_cli=1
+
+Two ways to reset opcache:
+a. Restart PHP FPM or Apache - The sledgehammer method of invalidating files in Opcache has the downside that it might lead to aborted requests and a very small amount of time where requests get lost.
+b. Calling opcache_reset(), which is tricky because it has to be called in a script executed by Apache or PHP-FPM to affect the webservers Opcache. You can add a special endpoint to your application and secure it using a secret hash.
 
 #########################################
 
