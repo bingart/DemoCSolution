@@ -25,6 +25,7 @@ TOC
 17. Wordpress File Sync
 18. build php by source code
 19. Reindex
+20. StachPath cdn
 
 #####################################################################################
 root/9IN.com
@@ -719,3 +720,7 @@ b. create new index with new template -- optional, if using new template
 c. invoke api.php of post-indexer to recreate all index
 d. test new index
 e. move alias
+
+20. StachPath cdn
+https://github.com/MaxCDN/python-maxcdn
+https://github.com/MaxCDN/php-maxcdn
