@@ -724,3 +724,14 @@ e. move alias
 20. StachPath cdn
 https://github.com/MaxCDN/python-maxcdn
 https://github.com/MaxCDN/php-maxcdn
+
+Set page to no cache:
+<?php
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+?>
+
+Set page to cache with specific time (seconds):
+<?php
+header("Cache-Control: max-age=120, s-maxage=120");
+header("X-Accel-Expires: 120");
+?>

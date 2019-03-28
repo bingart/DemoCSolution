@@ -1,0 +1,6 @@
+sdk:
+https://developers.facebook.com/docs/marketing-api/sdks/
+accesstoken:
+https://developers.facebook.com/tools/accesstoken
+dashboard:
+https://developers.facebook.com/apps/2170644493014814/dashboard/
