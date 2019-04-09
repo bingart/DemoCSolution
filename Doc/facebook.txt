@@ -1,6 +1,17 @@
 sdk:
-https://developers.facebook.com/docs/marketing-api/sdks/
+https://developers.facebook.com/docs/graph-api
+https://developers.facebook.com/docs/graph-api/reference
+
 accesstoken:
 https://developers.facebook.com/tools/accesstoken
+https://developers.facebook.com/tools/explorer
+
+graph-api-explorer£º
+graph explorer:
+https://developers.facebook.com/docs/graph-api/explorer
+
 dashboard:
 https://developers.facebook.com/apps/2170644493014814/dashboard/
+
+me ID: 
+430882267683200

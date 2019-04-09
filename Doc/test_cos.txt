@@ -48,6 +48,21 @@ or modify group id and user id for nginx/nginx
 # groupmod -g 1001 nginx
 # usermod -u 1001 nginx
 
+####### using yum with proxy #######
+in host with internet access
+# sudo yum install squid
+# sudo vi /etc/squid/squid.conf
+change port to 33128
+
+in host for yum without internet access
+# sudo vi /etc/yum.conf
+[main]
+………………
+proxy=http://<Proxy-Server-IP-Address>:<Proxy_Port>
+proxy_username=<Proxy-User-Name>
+proxy_password=<Proxy-Password> 
+………………
+
 1. Install net-tools
 
 # sudo yum install net-tools
