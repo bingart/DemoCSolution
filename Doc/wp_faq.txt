@@ -9,3 +9,10 @@ rewrite non-exists files to index.php, the main routing
 if (!-e $request_filename) {
 	rewrite ^(.+)$ /index.php?q=$1 last;
 }
+
+2. wp report mysql8 connection failed for version 5.x
+
+The default crypt for MySQL 8 is "caching_sha2_password"
+While Wordpress support only "mysql_native_password" for old version.
+
+update the crypt.
