@@ -10,6 +10,16 @@ if (!-e $request_filename) {
 	rewrite ^(.+)$ /index.php?q=$1 last;
 }
 
+fix c:
+location / {
+        # First attempt to serve request as file, then
+        # as directory, then fall back to displaying a 404.
+        try_files $uri $uri/ /index.php?q=$uri&$args; 
+        #try_files $uri $uri/ =404;
+        # Uncomment to enable naxsi on this location
+        # include /etc/nginx/naxsi.rules
+}
+
 2. wp report mysql8 connection failed for version 5.x
 
 The default crypt for MySQL 8 is "caching_sha2_password"
