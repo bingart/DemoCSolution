@@ -93,6 +93,10 @@ or working with firewalld
 # sudo mysql_secure_installation
 root / msnP@ssw0rd01!
 
+if access deny:
+add following into /etc/my.cnf to skip password
+skip-grant-tables=1
+
 refer: https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-centos-7
 
 2.1 Create WP database
@@ -293,12 +297,11 @@ Client Side:
 
 5. CertBot
 
-# pip uninstall requests
-# pip uninstall urllib3
+# sudo pip uninstall requests
+# sudo pip uninstall urllib3
 # sudo yum remove python-urllib3
 # sudo yum remove python-requests
-# sudo yum install python-urllib3
-# sudo yum install python-requests
+# sudo yum install python-urllib3 python-requests 
 # sudo yum install certbot
 
 The default conf location: /etc/letsencrypt
