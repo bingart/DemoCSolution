@@ -24,8 +24,9 @@ TOC
 16.1 php-redis build
 17. Wordpress File Sync
 18. build php by source code
-19. Reindex
+19. Reindex all posts
 20. StachPath cdn
+21. wpcli
 
 #####################################################################################
 root/9IN.com
@@ -731,13 +732,13 @@ validate
 # sudo systemctl start php-fpm
 # sudo systemctl restart php-fpm
 
-19 Reindex
+19 Reindex all posts
 
-a. create new template -- optional, if using new template
+a. create new es template -- optional, if using new template
 b. create new index with new template -- optional, if using new template
 c. invoke api.php of post-indexer to recreate all index
 d. test new index
-e. move alias
+e. move alias (remove old one and create new one)
 
 20. StachPath cdn
 https://github.com/MaxCDN/python-maxcdn
@@ -753,3 +754,24 @@ Set page to cache with specific time (seconds):
 header("Cache-Control: max-age=120, s-maxage=120");
 header("X-Accel-Expires: 120");
 ?>
+
+21. wpcli
+
+# installation =====================
+# curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+or
+# wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+# php wp-cli.phar --info
+# chmod +x wp-cli.phar
+# sudo mv wp-cli.phar /usr/local/bin/wp
+# wp --info         -- validate installation
+# sudo /usr/local/bin/wp cli update     -- update version
+
+# install wordpress site with wpcli =======================
+# sudo mkdir /data/wp-app/wpcli
+# cd /data/wp-app/wpcli
+# sudo wp core download         --- download latest package
+# sudo wp config create --dbname=wpcli --dbuser=wpcli --dbpass=P@ssw0rd --dbhost=127.0.0.1
+# sudo wp core install --url=wpcli.com --title=WPCLI --admin_user=wpcli --admin_password=wpcli --admin_email=feisun@westwin.com --allow-root
+# sudo wp core version          --- print wp version
+# sudo wp core update           --- update to new version
