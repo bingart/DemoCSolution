@@ -27,6 +27,7 @@ TOC
 19. Reindex all posts
 20. StachPath cdn
 21. wpcli
+22. kafka
 
 #####################################################################################
 root/9IN.com
@@ -777,3 +778,31 @@ or
 # sudo wp core install --url=wpcli.com --title=WPCLI --admin_user=wpcli --admin_password=wpcli --admin_email=feisun@westwin.com --allow-root
 # sudo wp core version          --- print wp version
 # sudo wp core update           --- update to new version
+
+clear wp databases ============================
+mysql> drop table wp_commentmeta;
+mysql> drop table wp_comments;
+mysql> drop table wp_links;
+mysql> drop table wp_options;
+mysql> drop table wp_postmeta;
+mysql> drop table wp_posts;
+mysql> drop table wp_term_relationships;
+mysql> drop table wp_term_taxonomy;
+mysql> drop table wp_termmeta;
+mysql> drop table wp_terms;
+mysql> drop table wp_usermeta;
+mysql> drop table wp_users;
+
+22. kafka
+
+download from https://kafka.apache.org/downloads
+# tar xvzf kafka_2.12-2.2.0.tgz
+# cd kafka_2.12-2.2.0
+# bin/zookeeper-server-start.sh -daemon ../config/zookeeper.properties                                            --- listen on 2181
+# bin/kafka-server-start.sh -daemon ../config/server.properties                                                   --- listen on 9092
+# bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic mykafka   --- create topic, single node
+# bin/kafka-topics.sh --list --zookeeper localhost:2181                                                           --- list all topics
+# bin/kafka-topics.sh --describe --zookeeper localhost:2181
+# bin/kafka-console-producer.sh --broker-list localhost:9092 --topic mykafka                       --- produce msg into topic, ctrl+c interrupt
+# bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic mykafka --from-beginning        --- consume msg from topic, from beginning
+
