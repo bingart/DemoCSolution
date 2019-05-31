@@ -28,6 +28,7 @@ TOC
 20. StachPath cdn
 21. wpcli
 22. kafka
+23. composer/tumblr
 
 #####################################################################################
 root/9IN.com
@@ -806,3 +807,15 @@ download from https://kafka.apache.org/downloads
 # bin/kafka-console-producer.sh --broker-list localhost:9092 --topic mykafka                       --- produce msg into topic, ctrl+c interrupt
 # bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic mykafka --from-beginning        --- consume msg from topic, from beginning
 
+23. composer/tumblr
+refer: https://www.vultr.com/docs/install-composer-on-centos-7
+refer: https://packagist.org/packages/tumblr/tumblr
+refer: https://docs.phpcomposer.com/01-basic-usage.html#Installation
+
+# curl -sS https://getcomposer.org/installer | php
+# php composer.phar
+# mv composer.phar /usr/local/bin/composer
+
+# php composer.phar require tumblr/tumblr:~0.4.0
+or
+# composer require tumblr/tumblr
