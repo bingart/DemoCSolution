@@ -820,11 +820,22 @@ refer: https://getcomposer.org/doc/01-basic-usage.md
 # php composer.phar require tumblr/tumblr:~0.4.0
 or
 # composer require tumblr/tumblr
+# composer dump-autoload -o           ------------- Update the composer autoloader
+
+# composer list  列出所有可用的命令
+# composer init   初始化composer.json文件(就不劳我们自己费力创建啦)，会要求输入一些信息来描述我们当前的项目，还会要求输入依赖包
+# composer install  读取composer.json内容，解析依赖关系，安装依赖包到vendor目录下
+# composer update   更新最新的依赖关系到compsoer.lock文件，解析最新的依赖关系并且写入composer.lock文件
+# composer search packagename 搜索包，packagename替换为你想查找的包名称
+# composer require packagename 添加对packagename的依赖，packagename可修改为你想要的包名称
+# composer show packagename
+# composer self-update 更新 composer.phar文件自身
+# composer dump-autoload --optimize 优化一下自动加载
 
 ============ autoloading =============
 refer: https://www.cnblogs.com/webwei2017/p/9587842.html
-# composer require gregwar/captcha    ------------- invoke at site root path
-# vi composer_test.php                ------------- invoke at site root path
+# composer require gregwar/captcha    ------------- invoke at site root path, link not working !!!
+# vi composer_test.php                ------------- invoke at site root path, link not working !!!
 <?php
 //phpinfo();
 require __DIR__ . '/vendor/autoload.php';
