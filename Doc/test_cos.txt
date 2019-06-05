@@ -811,6 +811,7 @@ download from https://kafka.apache.org/downloads
 refer: https://www.vultr.com/docs/install-composer-on-centos-7
 refer: https://packagist.org/packages/tumblr/tumblr
 refer: https://docs.phpcomposer.com/01-basic-usage.html#Installation
+refer: https://getcomposer.org/doc/01-basic-usage.md
 
 # curl -sS https://getcomposer.org/installer | php
 # php composer.phar
@@ -819,3 +820,18 @@ refer: https://docs.phpcomposer.com/01-basic-usage.html#Installation
 # php composer.phar require tumblr/tumblr:~0.4.0
 or
 # composer require tumblr/tumblr
+
+============ autoloading =============
+refer: https://www.cnblogs.com/webwei2017/p/9587842.html
+# composer require gregwar/captcha    ------------- invoke at site root path
+# vi composer_test.php                ------------- invoke at site root path
+<?php
+//phpinfo();
+require __DIR__ . '/vendor/autoload.php';
+
+use Gregwar\Captcha\CaptchaBuilder;
+$builder = new CaptchaBuilder;
+$builder->build();
+header('Content-type: image/jpeg');
+$builder->output();
+?>
