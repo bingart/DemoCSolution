@@ -812,6 +812,8 @@ refer: https://www.vultr.com/docs/install-composer-on-centos-7
 refer: https://packagist.org/packages/tumblr/tumblr
 refer: https://docs.phpcomposer.com/01-basic-usage.html#Installation
 refer: https://getcomposer.org/doc/01-basic-usage.md
+refer: https://github.com/tumblr/tumblr.php
+refer: https://www.phpcomposer.com/
 
 # curl -sS https://getcomposer.org/installer | php
 # php composer.phar
