@@ -799,8 +799,8 @@ mysql> drop table wp_users;
 download from https://kafka.apache.org/downloads
 # tar xvzf kafka_2.12-2.2.0.tgz
 # cd kafka_2.12-2.2.0
-# bin/zookeeper-server-start.sh -daemon ../config/zookeeper.properties                                            --- listen on 2181
-# bin/kafka-server-start.sh -daemon ../config/server.properties                                                   --- listen on 9092
+# bin/zookeeper-server-start.sh -daemon config/zookeeper.properties                                            --- listen on 2181
+# bin/kafka-server-start.sh -daemon config/server.properties                                                   --- listen on 9092
 # bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic mykafka   --- create topic, single node
 # bin/kafka-topics.sh --list --zookeeper localhost:2181                                                           --- list all topics
 # bin/kafka-topics.sh --describe --zookeeper localhost:2181
