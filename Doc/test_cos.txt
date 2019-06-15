@@ -774,8 +774,8 @@ or
 # install wordpress site with wpcli =======================
 # sudo mkdir /data/wp-app/wpcli
 # cd /data/wp-app/wpcli
-# sudo wp core download         --- download latest package
-# sudo wp config create --dbname=wpcli --dbuser=wpcli --dbpass=P@ssw0rd --dbhost=127.0.0.1
+# sudo wp core download --allow-root         --- download latest package
+# sudo wp config create --dbname=wpcli --dbuser=wpcli --dbpass=P@ssw0rd --dbhost=127.0.0.1 --allow-root
 # sudo wp core install --url=wpcli.com --title=WPCLI --admin_user=wpcli --admin_password=wpcli --admin_email=feisun@westwin.com --allow-root
 # sudo wp core version          --- print wp version
 # sudo wp core update           --- update to new version
