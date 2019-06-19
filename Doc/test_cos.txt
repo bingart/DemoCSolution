@@ -775,8 +775,8 @@ or
 # sudo mkdir /data/wp-app/wpcli
 # cd /data/wp-app/wpcli
 # sudo wp core download --allow-root         --- download latest package
-# sudo wp config create --dbname=wpcli --dbuser=wpcli --dbpass=P@ssw0rd --dbhost=127.0.0.1 --allow-root
-# sudo wp core install --url=wpcli.com --title=WPCLI --admin_user=wpcli --admin_password=wpcli --admin_email=feisun@westwin.com --allow-root
+# sudo wp config create --dbname=pay --dbuser=wp_admin --dbpass=wpAdmin@2018 --dbhost=127.0.0.1 --allow-root
+# sudo wp core install --url=pay.dev.chn.gbl --title=Payment --admin_user=wp_admin --admin_password=wpAdmin@2018 --admin_email=feisun@westwin.com --allow-root
 # sudo wp core version          --- print wp version
 # sudo wp core update           --- update to new version
 
