@@ -29,6 +29,8 @@ TOC
 21. wpcli
 22. kafka
 23. composer/tumblr
+24. netcore
+25. eclipse for php
 
 #####################################################################################
 root/9IN.com
@@ -856,3 +858,45 @@ $builder->build();
 header('Content-type: image/jpeg');
 $builder->output();
 ?>
+
+24. netcore
+
+refer: https://zhuanlan.zhihu.com/p/55159679
+
+# sudo rpm -Uvh https://packages.microsoft.com/config/rhel/7/packages-microsoft-prod.rpm   ------- install repository
+# sudo yum update
+# sudo yum install dotnet-sdk-2.2
+# dotnet --info            -------------- validate
+
+create/build/publish (file system) a Web/MVC/netcore application: Mvc
+copy into web root folder
+#  dotnet MvcApplication3.dll --server.urls=http://0.0.0.0:5000
+
+25. eclipse for php (windows)
+
+a. download eclipse for php from http://www.eclipse.org/downloads/.
+b. download php binary from https://php.net/downloads.php - https://windows.php.net/download#php-7.1
+c. unzip php binary into c:\php
+d. download xdebug ext from https://xdebug.org/download.php - PHP 7.1 VC14 TS (64 bit) thread safe version !!!
+e: edit php.ini, add following into end of file
+
+;zend_extension=c:\php\ext\php_xdebug-2.7.2-7.1-vc14-nts-x86_64.dll
+;zend_extension_ts=c:\php\ext\php_xdebug-2.7.2-7.1-vc14-nts-x86_64.dll
+zend_extension="php_xdebug-2.7.2-7.1-vc14-x86_64.dll"
+[Xdebug]
+xdebug.auto_trace = On
+xdebug.show_exception_trace = On
+xdebug.remote_autostart = On
+xdebug.remote_enable = On
+xdebug.collect_vars = On
+xdebug.collect_return = On
+xdebug.collect_params = On
+xdebug.trace_output_dir="E:/logs/xdebug"
+xdebug.profiler_output_dir="E:/logs/xdebug"
+xdebug.profiler_enable=On
+xdebug.remote_host=localhost
+xdebug.remote_port=9000
+xdebug.remote_handler=dbgp
+
+e. set php debug to xdebug
+f. phpinfo() to validate xdebug is OK
