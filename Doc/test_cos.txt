@@ -31,6 +31,7 @@ TOC
 23. composer/tumblr
 24. netcore
 25. eclipse for php
+26. opcache gui
 
 #####################################################################################
 root/9IN.com
@@ -898,5 +899,78 @@ xdebug.remote_host=localhost
 xdebug.remote_port=9000
 xdebug.remote_handler=dbgp
 
+zend_extension=C:\php\ext\php_opcache.dll
+
+[opcache]
+opcache.enable = 1
+opcache.memory_consumption = 128
+opcache.max_accelerated_files = 4000
+opcache.revalidate_freq = 60
+
+; Required for Moodle
+opcache.use_cwd = 1
+opcache.validate_timestamps = 1
+opcache.save_comments = 1
+opcache.enable_file_override = 0
+
+; If something does not work in Moodle
+;opcache.revalidate_path = 1 ; May fix problems with include paths
+;opcache.mmap_base = 0x20000000 ; (Windows only) fix OPcache crashes with event id 487
+
+; Experimental for Moodle 2.6 and later
+;opcache.fast_shutdown = 1
+;opcache.enable_cli = 1 ; Speeds up CLI cron
+;opcache.load_comments = 0 ; May lower memory use, might not be compatible with add-ons and other apps
+
 e. set php debug to xdebug
 f. phpinfo() to validate xdebug is OK
+
+26. opcache gui
+
+refer to: https://github.com/PeeHaa/OpCacheGUI/wiki/Installation
+
+git clone https://github.com/PeeHaa/OpCacheGUI.git
+
+Copy the file config.sample.php in the root of the project (as config.php) and make the changes needed for your environment.
+# cd /data/wp-app/OpCacheGUI
+# cp config.sample.php config.php
+# vi config.php
+'display_errors' => 'Off',
+'log_errors'     => 'On'
+'username'  => '',
+'password'  => '',
+'whitelist' => [
+    'localhost',
+	'172.16.10.26',
+]
+
+create nginx config
+# cd /etc/nginx/conf
+# vi site-opcache-gui.conf
+server {
+	listen      80;
+	server_name opcache.dev.chn.gbl;
+    root        /data/wp-app/OpCacheGUI/public;
+
+	# Load configuration files for the default server block.
+	include /etc/nginx/default.d/*.conf;
+	
+	location / {
+		index index.php index.html index.htm;
+		if ( -f $request_filename) {
+			expires 14d;
+			break;
+		}
+		if ( !-e $request_filename) {
+			rewrite ^(.+)$ /index.php?q=$1 last;
+		}
+		location ~ .php$ {
+			#fastcgi_pass    unix:/var/run/unix/php-fpm.socket;
+			fastcgi_pass   127.0.0.1:9000;
+			fastcgi_index   index.php;
+			fastcgi_param   SCRIPT_FILENAME $document_root$fastcgi_script_name;
+			fastcgi_param   PATH_INFO       $fastcgi_script_name;
+			include /etc/nginx/fastcgi_params;
+		}
+	}
+}
