@@ -1,5 +1,9 @@
 
 1. update and publish failed for version 5.x
+2. wp report mysql8 connection failed for version 5.x
+3. mixed content error
+
+1. update and publish failed for version 5.x
 
 fix a:
 change permalinks to post-name
@@ -26,3 +30,19 @@ The default crypt for MySQL 8 is "caching_sha2_password"
 While Wordpress support only "mysql_native_password" for old version.
 
 update the crypt.
+
+3. mixed content error
+
+description:
+a. nginx reverse proxy at c04, https://www.loadedmade.com/fix-mixed-content-issue-wordpress/
+b. wp install at c06, http://www.loadedmade.com
+c. https://www.loadedmade.com contains lots of http resources.
+
+refer to:
+https://support.cloudways.com/fix-mixed-content-issue-wordpress/
+
+a. login http site and install plugin "Really Simple SSL".
+b. login https site (without css/js resource), https://www.loadedmade.com/wp-admin/,  change form action to https://www.loadedmade.com/wp-login.php
+c. enter into dashboard (without css) - plugins - installed plugins
+c. click active https button of  "Really Simple SSL".
+c. reload page and relogin
