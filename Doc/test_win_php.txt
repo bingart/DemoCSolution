@@ -1,0 +1,51 @@
+
+1. php
+2. visual source code
+3. nginx
+
+1. php
+
+a. download windows php binary from: https://windows.php.net/download/
+b. VC14 x64 Thread Safe: https://windows.php.net/downloads/releases/php-7.1.30-Win32-VC14-x64.zip
+c. unzip file into c:\php
+d. download xdebug from: https://xdebug.org/download.php, https://xdebug.org/files/php_xdebug-2.7.2-7.1-vc14-x86_64.dll (thread safe, 7.1)
+e. copy php_xdebug-2.7.2-7.1-vc14-x86_64.dll into c:\php\ext
+f. add following into php.ini
+
+;zend_extension=c:\php\ext\php_xdebug-2.7.2-7.1-vc14-nts-x86_64.dll
+;zend_extension_ts=c:\php\ext\php_xdebug-2.7.2-7.1-vc14-nts-x86_64.dll
+zend_extension="php_xdebug-2.7.2-7.1-vc14-x86_64.dll"
+zend_extension=C:\php\ext\php_opcache.dll
+[Xdebug]
+xdebug.auto_trace = On
+xdebug.show_exception_trace = On
+xdebug.remote_autostart = On
+xdebug.remote_enable = On
+xdebug.collect_vars = On
+xdebug.collect_return = On
+xdebug.collect_params = On
+xdebug.trace_output_dir="E:/logs/xdebug"
+xdebug.profiler_output_dir="E:/logs/xdebug"
+xdebug.profiler_enable=On
+xdebug.remote_host=localhost
+xdebug.remote_port=9000
+xdebug.remote_handler=dbgp
+
+g. add c:\php into system PATH variable
+h. validate: enter into cmd: php -i | more
+
+2. visual source code
+
+refer to: https://blogs.msdn.microsoft.com/nicktrog/2016/02/11/configuring-visual-studio-code-for-php-development/
+a. download visual source code (system version), VSCodeSetup-x64-1.36.0.exe
+b. install "php debug" / "php intellisense" / "php fmt" extensions
+c. specify the path the PHP executable on your machine
+	create new folder: D:\WorkspacePHP\test
+	open folder in VSC
+	press F1 > type user > press Enter
+	Preference User Settings - User - extensions - Validate: Excutable Path - add content:
+	{
+		"php.validate.executablePath": "C:/php/php.exe"
+	}
+	
+	
