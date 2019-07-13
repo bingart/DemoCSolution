@@ -2,6 +2,8 @@
 1. php
 2. visual source code
 3. nginx
+4. php-fpm
+5. ThinkPHP
 
 1. php
 
@@ -48,4 +50,37 @@ c. specify the path the PHP executable on your machine
 		"php.validate.executablePath": "C:/php/php.exe"
 	}
 	
-	
+3. nginx
+
+download from https://nginx.org/en/download.html
+https://nginx.org/download/nginx-1.16.0.tar.gz
+
+a. cd c:\
+b. unzip nginx-1.17.1.zip
+c. cd nginx-1.17.1
+d. start nginx
+
+nginx -s stop	fast shutdown
+nginx -s quit	graceful shutdown
+nginx -s reload	changing configuration, starting new worker processes with a new configuration, graceful shutdown of old worker processes
+nginx -s reopen	re-opening log files
+
+e. validate: http://localhost
+
+4. php-fpm
+
+start-php-fcgi.bat
+
+@ECHO OFF
+ECHO Starting PHP FastCGI...
+set PATH=C:\php-5.3.10-Win32-VC9-x86;%PATH%
+C:\php\php-cgi.exe -b 127.0.0.1:9000 -c C:\php\php.ini
+
+TODO: 9000 port NOT working, replaced with 9123
+
+5. ThinkPHP
+
+ThinkPHP5快速入门.pdf
+
+
+
