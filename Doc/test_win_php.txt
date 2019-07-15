@@ -112,5 +112,18 @@ c. validate, open cmd, # composer
 ThinkPHP5快速入门.pdf
 site-tp5.conf
 
+a. update nginx.conf
+
+    #gzip  on;
+	# Load modular configuration files from the /etc/nginx/conf.d directory.
+    # See http://nginx.org/en/docs/ngx_core_module.html#include
+    # for more information.
+    include C:/nginx/conf/conf.d/*.conf;
+	
+b. create config file for tp5.com: C:/nginx/conf/conf.d/site-tp5.conf;
+c. update hosts
+	127.0.0.1    tp5.com
+d. validate: http://tp5.com/
+
 
 
