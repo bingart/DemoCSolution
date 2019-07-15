@@ -3,7 +3,8 @@
 2. visual source code
 3. nginx
 4. php-fpm
-5. ThinkPHP
+5. composer
+6. ThinkPHP
 
 1. php
 
@@ -35,6 +36,7 @@ xdebug.remote_handler=dbgp
 
 g. add c:\php into system PATH variable
 h. validate: enter into cmd: php -i | more
+i. cgi.fix_pathinfo=1 for php-fpm
 
 2. visual source code
 
@@ -69,7 +71,7 @@ e. validate: http://localhost
 
 4. php-fpm
 
-start-php-fcgi.bat
+a. create bat file in c:\php\start-php-fcgi.bat
 
 @ECHO OFF
 ECHO Starting PHP FastCGI...
@@ -78,9 +80,37 @@ C:\php\php-cgi.exe -b 127.0.0.1:9000 -c C:\php\php.ini
 
 TODO: 9000 port NOT working, replaced with 9123
 
-5. ThinkPHP
+b. open php-fpm in nginx configuration, replace "/scripts$fastcgi_script_name" with "$document_root$fastcgi_script_name" to avoid "no input scripts file" error.
+
+        # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+        #
+        location ~ \.php$ {
+            root           html;
+            fastcgi_pass   127.0.0.1:9000;
+            fastcgi_index  index.php;
+            #fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
+			fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            include        fastcgi_params;
+        }
+
+c. create file c:\nginx\html\info.php
+
+<?php
+phpinfo();
+?>
+
+d. validate with http://localhost/info.php
+
+5. composer
+
+a. downlaod from https://getcomposer.org/download/  https://getcomposer.org/Composer-Setup.exe
+b. run as administrator
+c. validate, open cmd, # composer
+
+6. ThinkPHP
 
 ThinkPHP5快速入门.pdf
+site-tp5.conf
 
 
 
