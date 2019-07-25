@@ -783,6 +783,8 @@ or
 # sudo wp core version          --- print wp version
 # sudo wp core update           --- update to new version
 
+NOTE####  if parameter has non-assci, use ''. --dbpass='~\0988'
+
 clear wp databases ============================
 mysql> drop table wp_commentmeta;
 mysql> drop table wp_comments;

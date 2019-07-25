@@ -2,6 +2,7 @@
 1. update and publish failed for version 5.x
 2. wp report mysql8 connection failed for version 5.x
 3. mixed content error
+4. resource load error 502
 
 1. update and publish failed for version 5.x
 
@@ -46,3 +47,8 @@ b. login https site (without css/js resource), https://www.loadedmade.com/wp-adm
 c. enter into dashboard (without css) - plugins - installed plugins
 c. click active https button of  "Really Simple SSL".
 c. reload page and relogin
+
+4. resource load error 502
+
+css/js return 502 nginx error.
+disable nginx cache for css/js.
