@@ -310,6 +310,18 @@ Client Side:
 # sudo yum install python-urllib3 python-requests 
 # sudo yum install certbot
 
+nginx config
+
+HTTP & HTTPS:
+location ^~ /.well-known/acme-challenge/ {
+	default_type "text/plain";
+	root /data/wp-sync/wp-data/html;
+}
+HTTPS only:
+location = /.well-known/acme-challenge/ {
+	return 404;
+}
+
 The default conf location: /etc/letsencrypt
 # sudo certbot certificates ---------------------- list all certs 
 # sudo certbot certonly --staging --dry-run --webroot -w /data/wp-sync/wp-data/html/ -d www.trackglucose.com --------------- test to request new certbot
@@ -318,9 +330,10 @@ The default conf location: /etc/letsencrypt
 
 6. supervisord
 
-# easy_install supervisor
+# -- deprecated: easy_install supervisor
 or 
-# pip install supervisor
+# -- deprecated: pip install supervisor
+# sudo yum install supervisor
 refer: http://supervisord.org/installing.html#installing-to-a-system-with-internet-access
 # vi /etc/supervisord.conf
 [program:sync_mysql_to_es]
