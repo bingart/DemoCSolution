@@ -582,9 +582,16 @@ https://healthtopquestions.com/wp-content/plugins/post-tester/redis.php
 Update the php ini file
 # sudo php -i | grep "Loaded Configuration File"
 # sudo vi /etc/php.ini
+
+# redis single
 session.save_handler = redis
 session.save_path = "tcp://172.16.40.139:6379?weight=1&auth=foobared"  -- with auth
 session.save_path = "tcp://172.16.40.139:6379?weight=1"                -- without auth
+session.save_path = "tcp://host1:6379?weight=1,tcp://host2:6379?weight=2&timeout=2.5,tcp://host3:6379?weight=2"
+
+# redis cluster
+session.save_handler = rediscluster
+session.save_path = "seed[]=172.20.123.41:6379&seed[]=172.20.123.42:6379&timeout=2&read_timeout=2&failover=error&persistent=1"
 
 Update php-fpm configuration to disable session configuration:
 # sudo vi /etc/php-fpm.d/www.conf
@@ -596,6 +603,8 @@ validation:
 phpinfo() to validate configurations
 http://htqa.dev.chn.gbl/wp-content/plugins/post-tester/session.php
 https://healthtopquestions.com/wp-content/plugins/post-tester/session.php
+https://github.com/phpredis/phpredis/blob/develop/cluster.markdown#readme
+
 
 16.1 php-redis build
 
