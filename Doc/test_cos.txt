@@ -182,6 +182,9 @@ mysql> SET GLOBAL general_log = 'ON';
 mysql> SET GLOBAL general_log_file = '/data/log/mysql/query.log';
 mysql> SET GLOBAL general_log = 'OFF';
 
+2.4 show bin log
+
+# sudo  mysqlbinlog --no-defaults --database=wp_healthtopquestion --base64-output=DECODE-ROWS --verbose mysql-bin.000580 > ~/htq2.txt
 
 3. Install nginx / php7 ###############################################################################
 
