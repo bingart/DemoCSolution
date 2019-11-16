@@ -3,6 +3,8 @@
 2. wp report mysql8 connection failed for version 5.x
 3. mixed content error
 4. resource load error 502
+5. how to build professional home page
+6. popular themes
 
 1. update and publish failed for version 5.x
 
@@ -53,9 +55,18 @@ c. reload page and relogin
 css/js return 502 nginx error.
 disable nginx cache for css/js.
 
-5. how to build professional site
+5. how to build professional home page
 
 a. create page named with "Home", select home page template
 b. edit Home page with widgets provided by theme.
 c. refer to user guide of theme.
 d. set site home to "Home" page.
+
+6. popular themes
+
+a. hitmag
+b. News Portal Mag
+c. BlogMagazine
+d. Mags
+e. NewsCard
+f. travel mag

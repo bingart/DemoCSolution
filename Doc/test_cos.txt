@@ -32,6 +32,7 @@ TOC
 24. netcore
 25. eclipse for php
 26. opcache gui
+27. wssh
 
 #####################################################################################
 root/9IN.com
@@ -1001,3 +1002,48 @@ server {
 		}
 	}
 }
+
+27. wssh
+
+Web based ssh client 
+refer: https://github.com/huashengdun/webssh
+refer: https://webssh.huashengdun.org/
+
+python NameError: name 'platform_system' is not defined
+refer: https://stackoverflow.com/questions/46695657/pip-install-requestssecurity-nameerror-name-python-implementation-is-not-de
+fix: upgrade pip和setuptools
+# pip install --upgrade pip
+# pip install --upgrade setuptools
+# pip install webssh
+
+Deployment
+Running behind an Nginx server
+# wssh --address='127.0.0.1' --port=8888 --policy=reject
+# Nginx config example
+location / {
+    proxy_pass http://127.0.0.1:8888;
+    proxy_http_version 1.1;
+    proxy_read_timeout 300;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+    proxy_set_header Host $http_host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Real-PORT $remote_port;
+}
+
+Generate cert.crt and cert.key
+refer: https://serverfault.com/questions/224122/what-is-crt-and-key-files-and-how-to-generate-them
+# openssl genrsa 2048 > host.key
+# chmod 400 host.key
+# openssl req -new -x509 -nodes -sha256 -days 365 -key host.key -out host.cert
+then generate host.key and host.cert
+
+Running as a standalone server
+# wssh --port=8080 --sslport=4433 --certfile='host.cert' --keyfile='host.key' --xheaders=False --policy=reject
+[I 191116 21:13:59 settings:98] RejectPolicy
+[I 191116 21:13:59 main:39] Listening on 0.0.0.0:8080 (http)
+[I 191116 21:13:59 main:39] Listening on 0.0.0.0:4433 (https)
+
+open https://172.16.40.139:4433
+connect any host with host/port/user/password
+enjoy it !!!
