@@ -32,7 +32,7 @@ TOC
 24. netcore
 25. eclipse for php
 26. opcache gui
-27. wssh
+27. web-based SSH
 
 #####################################################################################
 root/9IN.com
@@ -901,6 +901,8 @@ create/build/publish (file system) a Web/MVC/netcore application: Mvc
 copy into web root folder
 #  dotnet MvcApplication3.dll --server.urls=http://0.0.0.0:5000
 
+# sudo yum install supervisor 
+
 25. eclipse for php (windows)
 
 a. download eclipse for php from http://www.eclipse.org/downloads/.
@@ -1003,7 +1005,7 @@ server {
 	}
 }
 
-27. wssh
+27. web-based SSH
 
 Web based ssh client 
 refer: https://github.com/huashengdun/webssh
@@ -1051,3 +1053,9 @@ Running as a standalone server
 open https://172.16.40.139:4433
 connect any host with host/port/user/password
 enjoy it !!!
+
+28. http://web-console.org/
+shellinabox
+https://www.tecmint.com/shell-in-a-box-a-web-based-ssh-terminal-to-access-remote-linux-servers/
+bastillion
+https://github.com/bastillion-io/Bastillion
