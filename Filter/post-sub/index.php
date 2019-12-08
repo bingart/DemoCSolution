@@ -63,9 +63,13 @@ function my_posts_results_filter( $posts ) {
 			);
 			$post = new WP_Post($p);
 			$filtered_posts[] = $post;
+			global $wp_query;
+			$wp_query->max_num_pages = 6;
 		}
+		return $filtered_posts;
+	} else {
+		return $posts;
 	}
-	return $filtered_posts ;
 }
 add_filter( 'posts_results', 'my_posts_results_filter' );
 
