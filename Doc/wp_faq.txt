@@ -5,6 +5,7 @@
 4. resource load error 502
 5. how to build professional home page
 6. popular themes
+7. post thumbnail
 
 1. update and publish failed for version 5.x
 
@@ -70,3 +71,13 @@ c. BlogMagazine
 d. Mags
 e. NewsCard
 f. travel mag
+
+7. post thumbnail
+
+see Wordpress_database_structure.jpg
+
+when media is uploaded, it is saved in wp_posts, post_status = inherit, post_type = attachment, post_mime_type = image/jpeg;
+when media is set as feature image of post, the relationship is save in wp_postmeta, post_id is id of post, meta_key = _thumbnail_id, meta_value = post_id of media, string format.
+
+sample: set image of post 103 to media 236, 
+ insert into wp_postmeta (post_id, meta_key, meta_value) VALUES (103, "_thumbnail_id", "236");

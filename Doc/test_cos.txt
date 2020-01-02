@@ -334,6 +334,32 @@ The default conf location: /etc/letsencrypt
 # sudo certbot certonly --webroot -w /data/wp-sync/wp-data/html/ -d www.trackglucose.com --------------- request new certbot
 # sudo certbot renew -------------------------- renew all existing certs
 
+safe to replace corrupt domain cert:
+
+a. backup cert files to nginx cert folder
+# sudo cp /data/wp-sync/letsencrypt/conf/live/bpdiet.net/fullchain.pem cert/bpdiet.net_fullchain.pem
+# sudo cp /data/wp-sync/letsencrypt/conf/live/bpdiet.net/privkey.pem cert/bpdiet.net_privkey.pem
+
+b. change nginx cert file path to backup path
+#ssl_certificate /data/wp-sync/letsencrypt/conf/live/bpdiet.net/fullchain.pem;
+#ssl_certificate_key /data/wp-sync/letsencrypt/conf/live/bpdiet.net/privkey.pem;
+ssl_certificate cert/bpdiet.net_fullchain.pem;
+ssl_certificate_key cert/bpdiet.net_privkey.pem;
+				
+c. remove all related cert files
+# rm -rf /etc/letsencrypt/archive/${DOMAIN}
+# rm -rf /etc/letsencrypt/live/${DOMAIN}
+# rm -rf /etc/letsencrypt/renewal/${DOMAIN}.conf
+
+d. re-request certs from letsencrypt
+# /opt/script/request_cert.sh
+
+e. if ok, recover nginx cert file path
+ssl_certificate /data/wp-sync/letsencrypt/conf/live/bpdiet.net/fullchain.pem;
+ssl_certificate_key /data/wp-sync/letsencrypt/conf/live/bpdiet.net/privkey.pem;
+#ssl_certificate cert/bpdiet.net_fullchain.pem;
+#ssl_certificate_key cert/bpdiet.net_privkey.pem;
+
 6. supervisord
 
 # -- deprecated: easy_install supervisor
