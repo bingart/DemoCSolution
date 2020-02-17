@@ -35,6 +35,7 @@ TOC
 27. web-based SSH
 28. http://web-console.org/
 29. wordpress multi-sites
+30. nodejs
 
 #####################################################################################
 root/9IN.com
@@ -187,7 +188,15 @@ mysql> SET GLOBAL general_log = 'OFF';
 
 2.4 show bin log
 
+default is path: /var/lib/mysql
 # sudo  mysqlbinlog --no-defaults --database=wp_healthtopquestion --base64-output=DECODE-ROWS --verbose mysql-bin.000580 > ~/htq2.txt
+
+2.5 show query log
+
+general_log_file = /var/log/mysql/query.log
+general_log      = 1
+
+note: /var/log/mysql mysql:mysql 777
 
 3. Install nginx / php7 ###############################################################################
 
@@ -1115,3 +1124,40 @@ e. install and active plugin:
 refer:
 	https://multilingualpress.org/docs/how-to-install-wordpress-multisite/
 	https://www.digitalocean.com/community/tutorials/how-to-set-up-wordpress-multisite-with-nginx-on-ubuntu-14-04
+
+30 nodejs
+
+refer: https://www.e2enetworks.com/help/knowledge-base/how-to-install-node-js-and-npm-on-centos/
+
+a. Add node.js yum repository
+
+# yum install -y gcc-c++ make
+# curl -sL https://rpm.nodesource.com/setup_6.x | sudo -E bash -
+# curl -sL https://rpm.nodesource.com/setup_8.x | sudo -E bash -
+# curl -sL https://rpm.nodesource.com/setup_10.x | sudo -E bash -
+# curl -sL https://rpm.nodesource.com/setup_12.x | sudo -E bash -
+
+latest version is 12.
+
+b. Install node.js and NPM
+
+# yum install nodejs
+
+c. Verify versions
+
+# node -v 
+
+d. Testing the installation
+
+# vim test_server.js
+var http = require('http');
+http.createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.end('Welcome');
+}).listen(3001, "127.0.0.1");
+console.log('Server running at http://127.0.0.1:3001/');
+
+# node --debug test_server.js
+debugger listening on port 5858
+Server running at http://127.0.0.1:3001/
+
