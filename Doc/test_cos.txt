@@ -325,6 +325,12 @@ Client Side:
 # sudo yum install python-urllib3 python-requests 
 # sudo yum install certbot
 
+when urllib3 error:
+# cd /usr/lib/python2.7/site-packages
+# sudo rm -rf logging
+# sudo pip uninstall urllib3
+# sudo pip install urllib3==1.22   -- match the version required by certbot
+
 nginx config
 
 HTTP & HTTPS:
