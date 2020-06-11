@@ -5,19 +5,18 @@
 		temp.setAttribute('type', 'text/javascript');
 		temp.src = "https://www.infosoap.com/wp-includes/js/jquery/jquery.js?ver=1.12.4";
 		temp.onload = function() {
-			// remove this when load
-			// this.parentNode.removeChild(this);
+			console.log("inject js loaded");
+			var temp2 = document.createElement('script');
+			temp2.setAttribute('type', 'text/javascript');
+			temp2.src = "https://www.infosoap.com/wp-content/plugins/publisher-core/js/inject.js?ver=1.2";
+			temp2.onload = function() {
+				// remove this when load
+				// this.parentNode.removeChild(this);
+			};
+			document.head.appendChild(temp2);
 		};
-		document.head.appendChild(temp);
-		
-		var temp2 = document.createElement('script');
-		temp2.setAttribute('type', 'text/javascript');
-		temp2.src = "https://www.infosoap.com/wp-content/plugins/publisher-core/js/inject.js?ver=1.1";
-		temp2.onload = function() {
-			// remove this when load
-			// this.parentNode.removeChild(this);
-		};
-		document.head.appendChild(temp2);
+		document.getElementsByTagName("head")[0].appendChild(temp);
+		//document.head.appendChild(temp);		
 	}
     jQuery(function($){
 		$(document).ready(function(){
