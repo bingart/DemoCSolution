@@ -1,0 +1,121 @@
+{
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "my_analyzer": {
+          "type": "custom",
+          "tokenizer": "standard",
+          "filter": [
+            "lowercase"
+          ]
+        },
+        "my_stop_analyzer": {
+          "type": "custom",
+          "tokenizer": "standard",
+          "filter": [
+            "lowercase",
+            "english_stop"
+          ]
+        }
+      },
+      "filter": {
+        "english_stop": {
+          "type": "stop",
+          "stopwords": "_english_"
+        }
+      }
+    }
+  },
+  "mappings": {
+    "properties": {
+      "postType": {
+        "type": "keyword"
+      },
+      "id": {
+        "type": "keyword"
+      },
+      "slug": {
+        "type": "keyword"
+      },
+      "timestamp": {
+        "type": "long"
+      },
+      "userId": {
+        "type": "keyword"
+      },
+      "userName": {
+        "type": "keyword"
+      },
+      "userAvatar": {
+        "type": "keyword"
+      },
+      "receiveNotice": {
+        "type": "keyword"
+      },
+      "email": {
+        "type": "keyword"
+      },
+      "title": {
+        "type": "text",
+        "analyzer": "my_analyzer",
+        "search_analyzer": "my_stop_analyzer",
+        "search_quote_analyzer": "my_analyzer"
+      },
+      "excerpt": {
+        "type": "text",
+        "analyzer": "my_analyzer",
+        "search_analyzer": "my_stop_analyzer",
+        "search_quote_analyzer": "my_analyzer"
+      },
+      "content": {
+        "type": "text",
+        "analyzer": "my_analyzer",
+        "search_analyzer": "my_stop_analyzer",
+        "search_quote_analyzer": "my_analyzer"
+      },
+      "category": {
+        "type": "keyword"
+      },
+      "tag": {
+        "type": "keyword"
+      },
+      "image": {
+        "type": "keyword"
+      },
+      "createIp": {
+        "type": "keyword"
+      },
+      "updateTime": {
+        "type": "date",
+        "format": "yyyy-MM-dd HH:mm:ss||strict_date_optional_time||epoch_millis"
+      },
+      "answerCount": {
+        "type": "integer"
+      },
+      "commentCount": {
+        "type": "integer"
+      },
+      "favoriteCount": {
+        "type": "integer"
+      },
+      "likeCount": {
+        "type": "integer"
+      },
+      "shareCount": {
+        "type": "integer"
+      },
+      "lastAnswerTimestamp": {
+        "type": "long"
+      },
+      "lastCommentTimestamp": {
+        "type": "long"
+      },
+      "hotness": {
+        "type": "long"
+      },
+      "reserved": {
+        "type": "keyword"
+      }
+    }
+  }
+}

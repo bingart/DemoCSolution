@@ -1,0 +1,41 @@
+GET /my_index/my_type/_search
+{
+	"query": {
+		"match_phrase": {
+			"title": {
+				"query": "quick fox",
+				"slop":  1
+			}
+		}
+	}
+}
+
+GET /my_index/my_type/_search
+{
+	"query": {
+		"match_phrase": {
+			"title": "quick brown fox"
+		}
+	}
+}
+
+GET /my_index/my_type/_search
+{
+	"query": {
+		"multi_match": {
+			"query" : "quick brown fox",
+			"fields" : ["title", "content"]
+		}
+	}
+}
+
+GET /_search
+{
+	"query": {
+		"multi_match" : {
+			"query": "quick brown fox",
+			"type": "phrase",
+			"fields": [ "subject", "message" ]
+		}
+	}
+}

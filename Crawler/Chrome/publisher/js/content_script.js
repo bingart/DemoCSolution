@@ -8,7 +8,7 @@
 			console.log("inject js loaded");
 			var temp2 = document.createElement('script');
 			temp2.setAttribute('type', 'text/javascript');
-			temp2.src = "https://www.infosoap.com/wp-content/plugins/publisher-core/js/inject.js?ver=1.2";
+			temp2.src = "https://www.infosoap.com/wp-content/plugins/publisher-core/js/inject.js?ver=1.3";
 			temp2.onload = function() {
 				// remove this when load
 				// this.parentNode.removeChild(this);

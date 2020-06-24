@@ -1,0 +1,87 @@
+###############################################################################################################
+###############################################################################################################
+
+{
+	"query": {
+		"bool": {
+			"minimum_should_match": 1,
+			"should": [{
+				"match": {
+					"title": {
+						"operator": "or",
+						"query": "blood pressure chart",
+						"boost": 2.0
+					}
+				}
+			}, {
+				"match": {
+					"excerpt": {
+						"operator": "or",
+						"query": "blood pressure chart",
+						"boost": 1.0
+					}
+				}
+			}, {
+				"match": {
+					"content": {
+						"operator": "or",
+						"query": "blood pressure chart",
+						"boost": 1.0
+					}
+				}
+			}]
+		}
+	},
+	"size": 6,
+	"sort": [{
+		"timestamp": {
+			"order": "desc"
+		}
+	}],
+	"_source": {
+		"excludes": ["content"],
+		"includes": ["*"]
+	}
+}
+
+###############################################################################################################
+###############################################################################################################
+
+{
+	"query": {
+		"bool": {
+			"minimum_should_match": 1,
+			"should": [{
+				"match": {
+					"title": {
+						"operator": "or",
+						"query": "blood pressure chart",
+						"boost": 2.0
+					}
+				}
+			}, {
+				"match": {
+					"excerpt": {
+						"operator": "or",
+						"query": "blood pressure chart",
+						"boost": 1.0
+					}
+				}
+			}, {
+				"match": {
+					"content": {
+						"operator": "or",
+						"query": "blood pressure chart",
+						"boost": 1.0
+					}
+				}
+			}]
+		}
+	},
+	"size": 6,
+	"_source": {
+		"excludes": ["content"],
+		"includes": ["*"]
+	}
+}
+

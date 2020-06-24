@@ -1,0 +1,8 @@
+
+http://htqa.dev.chn.gbl/seek/?s=wbc&count=6
+
+curl -XPOST -H"Content-Type:application/json" http://172.16.40.150:9203/hp_post_live/_update/question152126 -d "{\"doc\" : {\"keyword\": \"WBC;\"}}"
+curl -XPOST -H"Content-Type:application/json" http://172.16.40.150:9203/hp_post_live/_update/question152126 -d "{\"doc\" : {\"keyword\": \"\"}}"
+
+curl -XGET http://172.16.40.150:9203/hp_post_live/_doc/question152126?pretty
+
