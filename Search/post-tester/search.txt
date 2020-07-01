@@ -1,0 +1,5 @@
+https://www.bingapis.com/api/v7/search?appid=&q=tools&offset=0&count=10&mkt=en-US
+https://www.bingapis.com/api/v7/images/search?appid=&q=tools&offset=0&count=10&mkt=en-US
+https://www.bingapis.com/api/v7/news/search?appid=&q=tools&offset=0&count=10&mkt=en-US
+https://www.bingapis.com/api/v7/videos/search?appid=&q=tools&offset=0&count=10&mkt=en-US
+not working, see new account.txt
