@@ -1,0 +1,56 @@
+{
+    "query": {
+        "function_score": {
+            "query": {
+                "bool": {
+                    "should": [
+                        {
+                            "match": {
+                                "title": {
+                                    "query": "way"
+                                }							
+                            }
+                        },
+                        {
+                            "match": {
+                                "excerpt": {
+                                    "query": "way"
+                                }							
+                            }
+                        },
+                        {
+                            "match": {
+                                "content": {
+                                    "query": "way"
+                                }							
+                            }
+                        }
+                    }
+                }
+            },
+            "boost": 2,
+            "functions": [
+                {
+                    "field_value_factor": {
+                        "field": "title",
+                        "factor": 4
+                    }
+                },
+                {
+                    "field_value_factor": {
+                        "field": "excerpt",
+                        "factor": 2
+                    }
+                },
+                {
+                    "field_value_factor": {
+                        "field": "content",
+                        "factor": 1
+                    }
+                }
+            ],
+            "score_mode": "max",
+            "boost_mode": "replace"
+        }
+    }
+}

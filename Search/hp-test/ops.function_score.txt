@@ -1,0 +1,1 @@
+curl -XGET http://172.16.40.150:9203/wp_btnewsdevchngbl_live/_search?pretty -H 'Content-Type: application/json' --data-binary @function_score_with_bool.json

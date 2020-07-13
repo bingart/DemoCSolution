@@ -2,7 +2,7 @@
 curl -XDELETE http://172.16.40.150:9203/wp_btnewsdevchngbl_live?pretty
 curl -XPUT -H"Content-Type:application/json" http://172.16.40.150:9203/wp_btnewsdevchngbl_live --data-binary @wp_template.stemmer.json
 
-curl -X GET "http://172.16.40.150:9203/wp_btnewsdevchngbl_live/_analyze?pretty" -H 'Content-Type: application/json' --data-binary @text.json
+curl -XGET "http://172.16.40.150:9203/wp_btnewsdevchngbl_live/_analyze?pretty" -H 'Content-Type: application/json' --data-binary @text.json
 
 curl -XPUT -H"Content-Type:application/json" http://172.16.40.150:9203/wp_btnewsdevchngbl_live/_doc/wp_1?pretty -d "{\"title\" : \"5 ways of cancer\"}"
 curl -XPUT -H"Content-Type:application/json" http://172.16.40.150:9203/wp_btnewsdevchngbl_live/_doc/wp_2?pretty -d "{\"title\" : \"5 tips of cancer\"}"
@@ -10,3 +10,4 @@ curl -XPUT -H"Content-Type:application/json" http://172.16.40.150:9203/wp_btnews
 curl -XPOST -H"Content-Type:application/json" http://172.16.40.150:9203/wp_btnewsdevchngbl_live/_doc/_search?pretty -d"{\"query\":{\"match\":{\"title\":\"tips\"}}}"
 curl -XPOST -H"Content-Type:application/json" http://172.16.40.150:9203/wp_btnewsdevchngbl_live/_doc/_search?pretty -d"{\"query\":{\"match\":{\"title\":\"ways\"}}}"
 
+curl -XGET http://172.16.40.150:9203/wp_btnewsdevchngbl_live/_search?pretty -H 'Content-Type: application/json' --data-binary @get_tokens.json
