@@ -1,0 +1,53 @@
+curl http://172.16.40.150:9203/_cat/indices?v
+
+curl -XDELETE http://172.16.40.150:9203/wp_btnewsdevchngbl_live?pretty
+
+Delete single Doc:
+curl -XDELETE http://172.16.40.150:9203/wp_btnewsdevchngbl_live/_doc/htq_1?pretty
+
+curl -XGET http://172.16.40.150:9203/wp_btnewsdevchngbl_live/_doc/wp_6105?pretty
+
+curl -XPUT -H"Content-Type:application/json" http://172.16.40.150:9203/wp_btnewsdevchngbl_20200522 --data-binary @wp_template.porter_stem.json
+
+curl http://172.16.40.150:9203/wp_btnewsdevchngbl_live/_mapping/?pretty
+
+curl http://172.16.40.150:9203/_alias/?pretty
+curl http://172.16.40.150:9203/wp_btnewsdevchngbl_20200522/_alias/*?pretty
+curl -XPOST -H"Content-Type:application/json" http://172.16.40.150:9203/_aliases -d"{\"actions\":[{\"add\":{\"index\":\"wp_btnewsdevchngbl_20200522\",\"alias\":\"wp_btnewsdevchngbl_live\"}}]}"
+curl -XPOST -H"Content-Type:application/json" http://172.16.40.150:9203/_aliases -d"{\"actions\":[{\"remove\":{\"index\":\"wp_btnewsdevchngbl_20200522\",\"alias\":\"wp_btnewsdevchngbl_live\"}}]}"
+
+curl http://172.16.40.150:9203/_alias/?pretty
+curl http://172.16.40.150:9203/wp_btnewsdevchngbl_20190316/_alias/*?pretty
+curl -XPOST -H"Content-Type:application/json" http://172.16.40.150:9203/_aliases -d"{\"actions\":[{\"add\":{\"index\":\"wp_btnewsdevchngbl_20200416\",\"alias\":\"wp_btnewsdevchngbl_live\"}}]}"
+curl -XPOST -H"Content-Type:application/json" 172.16.40.150:9203/_aliases -d"{\"actions\":[{\"remove\":{\"index\":\"wp_btnewsdevchngbl_20200416\",\"alias\":\"wp_btnewsdevchngbl_live\"}}]}"
+
+curl http://172.16.40.150:9203/wp_btnewsdevchngbl_20200522/_doc/_count
+curl http://172.16.40.150:9203/wp_btnewsdevchngbl_live/_doc/_count
+curl -XGET -H"Content-Type:application/json" http://172.16.40.150:9203/wp_btnewsdevchngbl_live/_doc/_count --data-binary @count.json
+
+curl -XGET http://172.16.40.150:9203/wp_btnewsdevchngbl_live/_doc/_search?pretty&q=*
+curl -XGET http://172.16.40.150:9203/wp_btnewsdevchngbl_live/_doc/wp_100?pretty
+
+curl -XGET http://172.16.40.150:9203/wp_btnewsdevchngbl_live/_doc/_search?pretty&q=*
+curl -XGET http://172.16.40.150:9203/wp_btnewsdevchngbl_live/_doc/wp_100?pretty
+
+curl -XPUT -H"Content-Type:application/json" http://172.16.40.150:9203/wp_btnewsdevchngbl_live/_doc/htq_1?pretty -d "{\"title\" : \"hello to to to\"}"
+curl -XPUT -H"Content-Type:application/json" http://172.16.40.150:9203/wp_btnewsdevchngbl_live/_doc/htq_2?pretty -d "{\"title\" : \"health to to to\"}"
+curl -XPUT -H"Content-Type:application/json" http://172.16.40.150:9203/wp_btnewsdevchngbl_live/_doc/htq_3?pretty -d "{\"title\" : \"to to to\"}"
+curl -XPUT -H"Content-Type:application/json" http://172.16.40.150:9203/wp_btnewsdevchngbl_live/_doc/htq_4?pretty -d "{\"title\" : \"treatment for flu\"}"
+curl -XPUT -H"Content-Type:application/json" http://172.16.40.150:9203/wp_btnewsdevchngbl_live/_doc/htq_5?pretty -d "{\"title\" : \"drug for cancer\"}"
+curl -XPUT -H"Content-Type:application/json" http://172.16.40.150:9203/wp_btnewsdevchngbl_live/_doc/htq_6?pretty -d "{\"title\" : \"for for for\"}"
+curl -XPUT -H"Content-Type:application/json" http://172.16.40.150:9203/wp_btnewsdevchngbl_live/_doc/htq_7?pretty -d "{\"title\" : \"5 tips of cancer\"}"
+curl -XPUT -H"Content-Type:application/json" http://172.16.40.150:9203/wp_btnewsdevchngbl_live/_doc/htq_8?pretty -d "{\"title\" : \"5 ways of cancer\"}"
+
+curl -XGET http://172.16.40.150:9203/wp_btnewsdevchngbl_live/_doc/htq_8?pretty
+
+# search all
+curl http://172.16.40.150:9203/wp_btnewsdevchngbl_live/_doc/_search?pretty&q=*
+
+curl -XPOST -H"Content-Type:application/json" http://172.16.40.150:9203/wp_btnewsdevchngbl_live/_doc/_search?pretty -d"{\"query\":{\"match\":{\"title\":\"hello to\"}}}"
+The "to" is ignored by search, the doc "htq_2" is the only match one.
+
+curl -XPOST -H"Content-Type:application/json" http://172.16.40.150:9203/wp_btnewsdevchngbl_live/_doc/_search?pretty -d"{\"query\":{\"match\":{\"title\":\"treatment for\"}}}"
+
+curl -XPOST -H"Content-Type:application/json" http://172.16.40.150:9203/wp_btnewsdevchngbl_live/_doc/_search?pretty -d"{\"query\":{\"match\":{\"title\":\"5 tips\"}}}"

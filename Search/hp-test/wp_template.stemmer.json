@@ -1,0 +1,101 @@
+{
+	"settings": {
+		"analysis": {
+			"analyzer": {
+				"my_analyzer": {
+					"tokenizer": "standard",
+					"filter": [
+						"lowercase",
+						"my_stemmer"
+					]
+				},
+				"my_stop_analyzer": {
+					"tokenizer": "standard",
+					"filter": [
+						"lowercase",
+						"my_stemmer",
+						"english_stop"
+					]
+				}
+			},
+			"filter": {
+				"english_stop": {
+					"type": "stop",
+					"stopwords": "_english_"
+				},
+				"my_stemmer": {
+					"type": "stemmer",
+					"language": "english"
+				}
+			}
+		}
+	},
+	"mappings": {
+		"properties": {
+			"type": {
+				"type": "keyword"
+			},
+			"blogId": {
+				"type": "keyword"
+			},
+			"author": {
+				"type": "keyword"
+			},
+			"authorName": {
+				"type": "keyword"
+			},
+			"title": {
+				"type": "text",
+				"analyzer": "my_analyzer",
+				"search_analyzer": "my_stop_analyzer",
+				"search_quote_analyzer": "my_analyzer"
+			},
+			"excerpt": {
+				"type": "text",
+				"analyzer": "my_analyzer",
+				"search_analyzer": "my_stop_analyzer",
+				"search_quote_analyzer": "my_analyzer"
+			},
+			"keyword": {
+				"type": "text",
+				"analyzer": "my_analyzer",
+				"search_analyzer": "my_stop_analyzer",
+				"search_quote_analyzer": "my_analyzer"
+			},
+			"content": {
+				"type": "text",
+				"analyzer": "my_analyzer",
+				"search_analyzer": "my_stop_analyzer",
+				"search_quote_analyzer": "my_analyzer"
+			},
+			"categories": {
+				"type": "keyword"
+			},
+			"categoryNames": {
+				"type": "keyword"
+			},
+			"tags": {
+				"type": "keyword"
+			},
+			"domain": {
+				"type": "keyword"
+			},
+			"url": {
+				"type": "keyword"
+			},
+			"updatedTime": {
+				"type": "date",
+				"format": "yyyy-MM-dd HH:mm:ss||strict_date_optional_time||epoch_millis"
+			},
+			"name": {
+				"type": "keyword"
+			},
+			"image": {
+				"type": "keyword"
+			},
+			"reserved": {
+				"type": "keyword"
+			}
+		}
+	}
+}
