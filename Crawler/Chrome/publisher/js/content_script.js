@@ -22,6 +22,15 @@
 		$(document).ready(function(){
 			_injectJs();
 			_log("inject js");
+			console.log("tabs=" + chrome.tabs);
+			/*
+			chrome.tabs.query(
+				{active:true,windowType:"normal", currentWindow: true},
+				function(d){
+					console.log("tabid=" + d[0].id);
+				}
+			);
+			*/
 		});
 	});
 })();
