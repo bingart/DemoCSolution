@@ -812,6 +812,7 @@ validate
 18.1 build php with AMQP
 
 refer to: https://www.cnblogs.com/jie-fang/p/7885924.html
+refer to: https://github.com/alanxz/rabbitmq-c
 
 # yum install cmake
 
