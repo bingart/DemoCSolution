@@ -844,15 +844,28 @@ extension=amqp.so
 # vi test.php
 
 <?php
-$cnn = new AMQPConnection();
-$cnn->setHost('127.0.0.1');
-$cnn->setLogin('guest');
-$cnn->setPassword('guest');
-if($cnn->connect()){
-	echo 'connection ok';
+$conn_args = array(
+	'host' => '172.16.40.150',
+	'port' => '5672',
+	'login' => 'guest',
+	'password' => 'guest',
+	'vhost'=>'/'
+);
+$conn = new AMQPConnection($conn_args);
+if (!$conn->connect()) {   
+	die("connect to the broker error");
 } else {
-	echo 'connection error';
+	echo "connection ok\n";
 }
+$channel = new AMQPChannel($conn);
+$e_name = 'test3';
+$ex = new AMQPExchange($channel);
+$ex->setName($e_name);
+$ex->setType(AMQP_EX_TYPE_DIRECT); //direct type
+$ex->setFlags(AMQP_DURABLE); // persistence
+echo "exchange status:".$ex->declare()."\n";
+$result = $ex->publish("{}", "");
+echo "publish result:".$result."\n";
 ?>
 
 # php test.php
