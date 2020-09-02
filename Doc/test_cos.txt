@@ -835,12 +835,13 @@ refer to: https://github.com/alanxz/rabbitmq-c
 Installing shared extensions:     /usr/local/php7/lib/php/extensions/no-debug-non-zts-20160303/
 
 edit php.ini
-
 [rabbitmq]
 extension=amqp.so
 
-# yum install librabbitmq -- otherwise amqp.so load shard lib error, load from /usr/lib64, build is /usr/local/lib64
+# vi /etc/bashrc
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib64:/usr/local/lib     -- amqp.so load shard lib error, load from /usr/lib64, build is /usr/local/lib64
 
+validation
 # vi test.php
 
 <?php
