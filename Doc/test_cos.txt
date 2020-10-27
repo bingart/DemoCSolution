@@ -1283,3 +1283,5 @@ relay_domains =
 home_mailbox = Maildir/
 
 the default log file path: /var/log/mail.log
+
+TODO: send mail success from office server, failed from cloud server.
