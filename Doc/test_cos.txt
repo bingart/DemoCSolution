@@ -1278,7 +1278,7 @@ mydomain = example.com
 myorigin = $mydomain
 inet_interfaces = all
 mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain
-mynetworks = 192.168.0.0/24, 127.0.0.0/8, 172.16.40.125
+mynetworks = 192.168.0.0/24, 127.0.0.0/8, 172.16.40.125    --- ip must be added, otherwise relay access denied. 
 relay_domains =
 home_mailbox = Maildir/
 
