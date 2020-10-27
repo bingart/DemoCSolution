@@ -38,6 +38,7 @@ TOC
 29. wordpress multi-sites
 30. nodejs
 31. nltk_data
+32. postfix
 
 #####################################################################################
 root/9IN.com
@@ -1237,7 +1238,7 @@ console.log('Server running at http://127.0.0.1:3001/');
 debugger listening on port 5858
 Server running at http://127.0.0.1:3001/
 
-30 nltk_data
+31 nltk_data
 
 when nltk.download() error:
 
@@ -1260,3 +1261,21 @@ nltk will search nltk_data in following path:
 optional (nltk will auto unzip files?)
 # cd /usr/local/lib/nltk_data/tokenizers
 # unzip punkl.zip
+
+32 postfix
+
+refer: https://wiki.centos.org/HowTos/postfix
+
+# sudo yum install postfix
+# sudo vi /etc/postfix/main.cf
+
+myhostname = mail.example.com
+mydomain = example.com
+myorigin = $mydomain
+inet_interfaces = all
+mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain
+mynetworks = 192.168.0.0/24, 127.0.0.0/8
+relay_domains =
+home_mailbox = Maildir/
+
+the default log file path: /var/log/mail.log
