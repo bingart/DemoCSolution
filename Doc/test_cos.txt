@@ -1269,7 +1269,6 @@ refer: http://www.postfix.org/MAILLOG_README.html
 refer: https://askubuntu.com/questions/394724/where-are-the-postfix-log-files
 refer: http://rtcamp.com/tutorials/mail/postfix-debugging/
 
-
 # sudo yum install postfix
 # sudo vi /etc/postfix/main.cf
 
