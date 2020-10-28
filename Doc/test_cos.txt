@@ -1286,6 +1286,10 @@ home_mailbox = Maildir/
 or
 # sudo postfix start|stop|status
 
+To enable default postfix log, install syslog
+# sudo yum install
+# sudo service rsyslog restart
+
 the default log file path: /var/log/maillog
 
 TODO: send mail success from office server, failed from cloud server.
