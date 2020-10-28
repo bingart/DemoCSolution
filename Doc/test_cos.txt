@@ -1268,6 +1268,7 @@ refer: https://wiki.centos.org/HowTos/postfix
 refer: http://www.postfix.org/MAILLOG_README.html
 refer: https://askubuntu.com/questions/394724/where-are-the-postfix-log-files
 refer: http://rtcamp.com/tutorials/mail/postfix-debugging/
+refer: https://unix.stackexchange.com/questions/165201/postfix-no-longer-logs-to-var-log-mail-after-it-has-been-deleted-and-re-created
 
 # sudo yum install postfix
 # sudo vi /etc/postfix/main.cf
