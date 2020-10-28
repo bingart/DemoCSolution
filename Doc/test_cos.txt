@@ -1282,6 +1282,7 @@ mynetworks = 192.168.0.0/24, 127.0.0.0/8, 172.16.40.125    --- ip must be added,
 relay_domains =
 home_mailbox = Maildir/
 
-the default log file path: /var/log/mail.log
+the default log file path: /var/log/maillog
 
 TODO: send mail success from office server, failed from cloud server.
+outlook.com spam the virtualbox postfix, while qq mail accepted !!!
