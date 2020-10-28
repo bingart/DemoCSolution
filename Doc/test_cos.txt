@@ -1286,3 +1286,4 @@ the default log file path: /var/log/maillog
 
 TODO: send mail success from office server, failed from cloud server.
 outlook.com spam the virtualbox postfix, while qq mail accepted !!!
+outlook.com spam the linode postfix, while qq mail accepted !!!
