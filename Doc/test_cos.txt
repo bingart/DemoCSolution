@@ -38,7 +38,9 @@ TOC
 29. wordpress multi-sites
 30. nodejs
 31. nltk_data
+32. gensim nltk
 32. postfix
+
 
 #####################################################################################
 root/9IN.com
@@ -432,6 +434,7 @@ troubleshooting:
 # start go-mysql-elasticsearch
 
 8. elasticsearch
+
 download jdk8 rpm from orcale
 # sudo yum localinstall jdk-8u161-linux-x64.rpm
 refer: https://www.digitalocean.com/community/tutorials/how-to-install-java-on-centos-and-fedora
@@ -455,6 +458,17 @@ To enable auto start for elasticsearch:
 # sudo systemctl start elasticsearch.service
 # sudo systemctl stop elasticsearch.service
 refer: https://www.elastic.co/guide/en/elasticsearch/reference/current/rpm.html
+
+version 7.9.2
+# sudo yum install java-1.8.0-openjdk.x86_64
+# java -version
+# wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.9.2-x86_64.rpm
+# sudo rpm -ivh elasticsearch-7.9.2-x86_64.rpm
+# sudo systemctl enable elasticsearch.service
+# cd /etc/elasticsearch
+# elasticsearch.yml — Configures the Elasticsearch server settings
+# jvm.options — Provides configuration for the JVM such as memory settings.
+refer: https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-elasticsearch-on-centos-7
 
 9. Redis
 
@@ -1262,7 +1276,18 @@ optional (nltk will auto unzip files?)
 # cd /usr/local/lib/nltk_data/tokenizers
 # unzip punkl.zip
 
-32 postfix
+32 gensim nltk
+
+1. sudo yum install python3
+2. sudo pip3 install flask
+3. sudo pip3 install gnesim
+4. sudo pip3 install nltk
+5. download nltk_data >> python3 >> import nltk >> nltk.download() >> d >> all -- download all packages
+6. sudo pip3 install pymysql
+7. config as supervisord service : python3 main.py
+8. sudo systemctl restart supervisord
+
+33 postfix
 
 refer: https://wiki.centos.org/HowTos/postfix
 refer: http://www.postfix.org/MAILLOG_README.html
@@ -1291,6 +1316,11 @@ To enable default postfix log, install syslog
 # sudo service rsyslog restart
 
 the default log file path: /var/log/maillog
+
+= check mail number in queue
+# mailq | tail -n 1                                  --- normal case
+or
+# find /var/spool/postfix/deferred -type f | wc -l   --- for large count
 
 TODO: send mail success from office server, failed from cloud server.
 outlook.com spam the virtualbox postfix, while qq mail accepted !!!
