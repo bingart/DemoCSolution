@@ -1,0 +1,81 @@
+1. Centos
+2. Nginx
+3. PHP7
+4. MySQL
+5. Wordpress
+6. WooCommerce
+7. Theme
+8. Setting
+9. Product
+10. Payment
+11. Shipping
+
+1. Centos
+	see test_cos.txt
+	
+2. Nginx
+	see test_cos.txt
+	
+server {
+	listen       80;
+	#listen       [::]:80;
+	server_name  wp_woo.com;
+	root    /data/wp-app/wp_woo;
+	
+	access_log      /data/logs/wp_woo/access.log main;
+	error_log       /data/logs/wp_woo/error.log warn;
+	
+	# Load configuration files for the default server block.
+	include /etc/nginx/default.d/*.conf;
+	
+	location / {
+		index index.php index.html index.htm;
+		if ( -f $request_filename) {
+			expires 14d;
+			break;
+		}
+		if ( !-e $request_filename) {
+			rewrite ^(.+)$ /index.php?q=$1 last;
+		}
+		location ~ .php$ {
+			#fastcgi_pass    unix:/var/run/unix/php-fpm.socket;
+			fastcgi_pass   127.0.0.1:9000;
+			fastcgi_index   index.php;
+			fastcgi_param   SCRIPT_FILENAME $document_root$fastcgi_script_name;
+			fastcgi_param   PATH_INFO       $fastcgi_script_name;
+			include /etc/nginx/fastcgi_params;
+		}
+	}
+}
+
+3. PHP7
+	see test_cos.txt
+
+4. MySQL
+	CREATE DATABASE wp_woo;
+	CREATE USER 'wp_woo'@'172.%' IDENTIFIED BY 'wpAdmin@2018';
+	GRANT ALL PRIVILEGES ON wp_woo.* TO 'wp_woo'@'172.%' IDENTIFIED BY 'wpAdmin@2018' WITH GRANT OPTION;
+	FLUSH PRIVILEGES;
+	
+5. Wordpress
+
+# wp cli update
+# mkdir /data/wp-app/wp_woo
+# cd /data/wp-app/wp_woo
+# wp core download --allow-root
+# wp config create --dbname=wp_woo --dbuser=wp_woo --dbpass=wpAdmin@2018 --dbhost=172.16.40.139 --allow-root
+# wp core install --url=wp_woo.com --title=Woo --admin_user=wp_woo --admin_password=wpAdmin@2018 --admin_email=feisun@westwin.com --allow-root
+# wp core version --allow-root
+# wp core update --allow-root
+# cd /data/wp-app
+# chown -R nginx:nginx /data/wp-app/wp_woo
+# cd /data/wp-app/wp_woo
+# chmod 777 wp-content
+
+http://wp_woo.com
+http://wp_woo.com/wp-admin/
+
+6. WooCommerce
+
+Dashboard - plugins - installed plugins - Add new - WooCommerce - Install Now - Activate
+Store Details - Industry- Products Type - Business Details - Theme
