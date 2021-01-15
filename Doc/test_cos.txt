@@ -42,7 +42,7 @@ TOC
 32. postfix
 33. CORS with pumpkin
 34. CORS with CDN
-
+35. pypcap
 
 
 
@@ -1423,3 +1423,10 @@ CDN将缓存header
 		client_max_body_size 10m;
 		client_body_buffer_size 128k;
 	}
+	
+35. pypcap
+
+centos install
+
+# sudo yum install libpcap-devel  --- to fix error "pcap.h" not found
+# sudo yum install python3-devel  --- to fix error "python.h" not found
