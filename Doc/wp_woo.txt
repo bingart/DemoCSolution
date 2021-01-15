@@ -3,12 +3,13 @@
 3. PHP7
 4. MySQL
 5. Wordpress
-6. WooCommerce
-7. Theme
+6. Theme
+7. WooCommerce
 8. Setting
 9. Product
 10. Payment
 11. Shipping
+12. Backup
 
 1. Centos
 	see test_cos.txt
@@ -75,7 +76,83 @@ server {
 http://wp_woo.com
 http://wp_woo.com/wp-admin/
 
-6. WooCommerce
+6. Theme
+
+Apperearance - Themes - Add new - Input "Astra" - Install - Activate
+
+7. Plugins
+
+Plugins - Add new - Input "Elementor Website Builder" - Install - Activate
+
+8. Theme Customize
+
+Apperearance - Themes - Astra Options - Install Import Plugin - Select Page Builder as Elementor - Filter with eCommerce AND free - Import Complete Site - Wait for minutes - View Site
+
+Astra to Starter Template or
+Elementor to Starter Template ?
+
+9. Add WooCommerce Settings
+
+10. Edit Home Page
+
+Dashboard - Open Home - Edit with Elementor - Select Element - Edit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+7. WooCommerce
 
 Dashboard - plugins - installed plugins - Add new - WooCommerce - Install Now - Activate
 Store Details - Industry- Products Type - Business Details - Theme
+
+12. Backup
+
+12.1 export
+
+#!/bin/bash
+
+now=$(date +"%Y%m%d%H%M")
+echo $now
+
+declare -a arr=(
+        "wp_woo"
+)
+
+## now loop through the above array
+for DOMAIN in "${arr[@]}"
+do
+        echo "==================================================================================> backup domain: $DOMAIN"
+        tar cvzf ${DOMAIN}.${now}.tar.gz ${DOMAIN}
+        mv ${DOMAIN}.${now}.tar.gz ./backup/
+        mysqldump -u root -p ${DOMAIN} > ${DOMAIN}.${now}.sql
+        mv ${DOMAIN}.${now}.sql ./backup/
+        echo "................................................................................... backup domain: $DOMAIN OK"
+done
+
+echo "backup complete"
+
+12.2 import
+
+# mysql -u root -p wp_woo < wp_woo.
+
+Backup List:
+
+1. Wordpress
+2. Wordpress, WooCommerce
