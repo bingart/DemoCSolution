@@ -3,13 +3,17 @@
 3. PHP7
 4. MySQL
 5. Wordpress
-6. Theme
-7. WooCommerce
-8. Setting
-9. Product
-10. Payment
-11. Shipping
-12. Backup
+6. Site Configuration
+6.1 Theme
+6.2 Plugins
+6.3 Theme Customize
+7. Shop Configuration
+7.1 WooCommerce Plugin
+7.2 WooCommerce Setting
+7.3 Product
+7.4 Payment
+7.5 Shipping
+8. Backup
 
 1. Centos
 	see test_cos.txt
@@ -76,51 +80,83 @@ server {
 http://wp_woo.com
 http://wp_woo.com/wp-admin/
 
-6. Theme
+6. Site Customize
+
+6.1 Theme
+
+如何制作一个漂亮的Wordpress 网站，一步一步详细教程，致初学者
+https://www.bilibili.com/video/BV1az4y1d7Ai?from=search&seid=4042202284827317446
+Starter Templates — Basics and FAQs
+https://wpastra.com/docs/starter-templates-basics-faqs/
 
 Apperearance - Themes - Add new - Input "Astra" - Install - Activate
 
-7. Plugins
+6.2 Plugins
 
 Plugins - Add new - Input "Elementor Website Builder" - Install - Activate
 
-8. Theme Customize
+6.3 Theme Customize
 
 Apperearance - Themes - Astra Options - Install Import Plugin - Select Page Builder as Elementor - Filter with eCommerce AND free - Import Complete Site - Wait for minutes - View Site
 
-Astra to Starter Template or
-Elementor to Starter Template ?
+### Astra to Starter Template or
+### Elementor to Starter Template ?
 
-9. Add WooCommerce Settings
-
-10. Edit Home Page
+6.4 Edit Home Page
 
 Dashboard - Open Home - Edit with Elementor - Select Element - Edit
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 7. WooCommerce
 
+7.1 WooCommerce Plugin
 Dashboard - plugins - installed plugins - Add new - WooCommerce - Install Now - Activate
 Store Details - Industry- Products Type - Business Details - Theme
+7.2 Setting
+7.3 Product
+
+7.4 Payment
+
+如何从零开始搭建 Woocommerce 在线商城，从零开始，初学者友好教程
+https://www.bilibili.com/video/BV19t4y1D7Kk?from=search&seid=6632536386176510432
+
+【woocommerce外贸独立站新手视频教程】如何设置PayPal支付方式？
+https://www.bilibili.com/video/BV1wC4y1t7z1?from=search&seid=13969732665707471742
+
+Woocommerce外贸独立站视频教程5：添加PayPal支付方式账户设置
+https://www.wordpresshy.com/11216
+
+woocommerce中添加PayPal付款账号流程
+https://zhuanlan.zhihu.com/p/120442054
+
+SUNFEI@TLVSTREAM.COM
+AUDwQN85acTx8jFYj_8ORhIq4Yl7-HPQJeUMke_ajkDnpwbLrl9QeaM7cNgeRM1byWJFNzoUxZJbPnf4
+EBbI5pxxYjwLpuOYynqsspDNQOLCMEHKewaQ3fw5SuLgff-XxL3TfTrg_SWcgEI170avuajEMF2vvuez
+
+Sandbox:
+
+SUNFEI-buyer@TLVSTREAM.COM
+P@ssw0rd
+Credit Card Number: 4077865937207898
+Credit Card Type: VISA
+Expiration Date: 07/2024
+
+SUNFEI-facilitator@TLVSTREAM.COM
+P@ssw0rd
+Username: SUNFEI-facilitator_api1.TLVSTREAM.COM
+Password: RN3JBXQYZHELYLSV
+Signature: AB8RcpYp6dMmd6feGnmgrOVEdUW6AN7G8XxYX2R1FMbnQRpKkhlTqsNy
+
+7.5 Shipping
+
+如何设置Woocommerce在线商城产品运费（Shipping Fee）
+https://www.bilibili.com/video/BV1tK411M7Ye?from=search&seid=8794869545209154856
+
+
+
+
+
 
 12. Backup
 
