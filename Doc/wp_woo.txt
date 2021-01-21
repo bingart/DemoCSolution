@@ -16,10 +16,10 @@
 8. Backup
 
 1. Centos
-	see test_cos.txt
+	Done
 	
 2. Nginx
-	see test_cos.txt
+	Done
 	
 server {
 	listen       80;
@@ -147,6 +147,18 @@ P@ssw0rd
 Username: SUNFEI-facilitator_api1.TLVSTREAM.COM
 Password: RN3JBXQYZHELYLSV
 Signature: AB8RcpYp6dMmd6feGnmgrOVEdUW6AN7G8XxYX2R1FMbnQRpKkhlTqsNy
+
+
+Live:
+
+CredentialSignature
+API Username
+SUNFEI_api1.TLVSTREAM.COM
+API Password
+T82ZT7BB572FMG2L
+Signature
+Ax0zKmWK4OOqV1-zrHOap5m1O8X4AHatnn6xZ179uVzZ1jhwdHZlelmY
+
 
 7.5 Shipping
 
