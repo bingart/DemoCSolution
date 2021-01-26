@@ -14,6 +14,13 @@
 7.4 Payment
 7.5 Shipping
 8. Backup
+9. Paypal Business Account
+10. Business License
+
+0. CDN
+
+https://www.cloudflare.com/
+sunfei@tlvstream.com
 
 1. Centos
 	Done
@@ -112,7 +119,7 @@ Dashboard - Open Home - Edit with Elementor - Select Element - Edit
 
 7.1 WooCommerce Plugin
 Dashboard - plugins - installed plugins - Add new - WooCommerce - Install Now - Activate
-Store Details - Industry- Products Type - Business Details - Theme
+Store Details - Industry - Products Type - Business Details - Theme
 7.2 Setting
 7.3 Product
 
@@ -170,9 +177,9 @@ https://www.bilibili.com/video/BV1tK411M7Ye?from=search&seid=8794869545209154856
 
 
 
-12. Backup
+8. Backup
 
-12.1 export
+8.1 export
 
 #!/bin/bash
 
@@ -196,11 +203,69 @@ done
 
 echo "backup complete"
 
-12.2 import
+8.2 import
 
 # mysql -u root -p wp_woo < wp_woo.
 
 Backup List:
 
-1. Wordpress
-2. Wordpress, WooCommerce
+a. Wordpress
+b. Wordpress, WooCommerce
+
+9. Paypal Business Account
+
+9.1 Upload a photo ID
+To help keep all our members safe, we need to know our community. Please provide a document that verifies your identity.
+
+What document would you like to upload?
+
+Your documents need to be valid and legible.
+The submitted information on the documents must correspond with the information on your PayPal account.
+Your documents shouldn't include selfies or images of people.
+We will handle your information in accordance with our Privacy Policy.
+Your documents shouldn't be password protected.
+
+9.2 Provide proof of your address
+Please upload a document that includes the address associated with your PayPal account.
+
+Your documents need to be valid and legible.
+The submitted information on the documents must correspond with the information on your PayPal account.
+Your documents shouldn't be older than 6 months.
+We will handle your information in accordance with our Privacy Policy.
+Your documents shouldn't be password protected.
+
+9.3 Provide a copy of your business license
+Please send us a copy of your business license.
+
+Your documents need to be valid and legible.
+The submitted information on the documents must correspond with the information on your PayPal account.
+Your documents shouldn't be older than 6 months.
+We will handle your information in accordance with our Privacy Policy.
+Your documents shouldn't be password protected.
+
+9.3 开户
+
+paypal需要一个对公的美元账户, 个体工商户是否开出，需要银行确认。
+paypal账户名称与营业执照上名称可以不一致，通过客服修改。
+
+10. Business License
+
+http://zwdt.sh.gov.cn/govPortals/bsfw/item/7787bcae-185b-4369-a456-eb2616297058
+(021)25657574、(021)12345
+曲阳市场监管所：上海市虹口区曲阳路街道玉田路252号 1楼1号窗口  51851406 / 51851401
+星期一至星期五，上午08:30至11:30，下午14:00至16:30（法定节假日除外）
+
+http://www.shhk.gov.cn/shhks/wsbs/wssq.aspx?itemid=447e8a74-85ad-44e4-b922-5b2175fe0209
+http://wenda.bendibao.com/life/2019724/41972.shtm
+https://baike.baidu.com/item/%E4%B8%AA%E4%BD%93%E5%B7%A5%E5%95%86%E6%88%B7%E5%90%8D%E7%A7%B0%E7%99%BB%E8%AE%B0%E7%AE%A1%E7%90%86%E5%8A%9E%E6%B3%95/2559686
+
+个体工商户营业执照经营范围怎么写
+https://zhidao.baidu.com/question/575149879.html
+
+https://h5.weidian.com/
+P@ssw0rd
+如想申请个体工商户营业执照的，微店可以为商家提供网络经营场所证明。这份证明会包含经营者的姓名、身份证号、网络经营场所网址等基本信息，标明微店已经向商家提供了该网络经营场所。
+通过以下2种方式获取微店开店证明：
+手机端：登陆微店店长版APP - 店铺管理 - 店铺资料 -【微店开店证明】- 保存图片下载即可；
+网页端：登陆网页d.weidian.com - 左侧菜单点击【设置】- 选择店铺信息 -【微店开店证明】 - 保存图片下载即可；
+https://d.weidian.com/weidian-pc/weidian-loader/#/pc-vue-info/shopText
