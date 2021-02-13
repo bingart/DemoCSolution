@@ -1,3 +1,4 @@
+0. CDN
 1. Centos
 2. Nginx
 3. PHP7
@@ -16,6 +17,7 @@
 8. Backup
 9. Paypal Business Account
 10. Business License
+11. Email
 
 0. CDN
 
@@ -172,8 +174,14 @@ Ax0zKmWK4OOqV1-zrHOap5m1O8X4AHatnn6xZ179uVzZ1jhwdHZlelmY
 如何设置Woocommerce在线商城产品运费（Shipping Fee）
 https://www.bilibili.com/video/BV1tK411M7Ye?from=search&seid=8794869545209154856
 
+发货地/售卖的目标国家/邮寄目的地国家设置
 
+Dashboard - WooCommerce - Settings - General - Store Address
+Dashboard - WooCommerce - Settings - General - General Options - Selling Locations/Shipping Locations/Default Customer Location
+基本收费：
+Flat shipping: [qty]*25, 即每个商品收费25$.
 
+增强型Shipping插件 - Table Rate for Woocommerce By Flexible Shipping
 
 
 
@@ -269,3 +277,16 @@ P@ssw0rd
 手机端：登陆微店店长版APP - 店铺管理 - 店铺资料 -【微店开店证明】- 保存图片下载即可；
 网页端：登陆网页d.weidian.com - 左侧菜单点击【设置】- 选择店铺信息 -【微店开店证明】 - 保存图片下载即可；
 https://d.weidian.com/weidian-pc/weidian-loader/#/pc-vue-info/shopText
+
+11. Email
+
+https://exmail.qq.com/login
+
+sunfei@healthascend.com
+13916017095
+contact@healthascend
+P@ssw0rd@20210127
+
+12. Email Download
+
+https://emaillistfreedownloadtxt.blogspot.com/2019/06/email-list-free-download.html
