@@ -71,16 +71,6 @@ server {
 	GRANT ALL PRIVILEGES ON wp_woo.* TO 'wp_woo'@'172.%' IDENTIFIED BY 'wpAdmin@2018' WITH GRANT OPTION;
 	FLUSH PRIVILEGES;
 
-	CREATE DATABASE healthascend;
-	CREATE USER 'healthascend'@'127.0.0.1' IDENTIFIED BY 'wpAdmin@2018';
-	GRANT ALL PRIVILEGES ON healthascend.* TO 'healthascend'@'127.0.0.1' IDENTIFIED BY 'wpAdmin@2018' WITH GRANT OPTION;
-	FLUSH PRIVILEGES;
-
-	CREATE DATABASE infosoap;
-	CREATE USER 'infosoap'@'127.0.0.1' IDENTIFIED BY 'wpAdmin@2018';
-	GRANT ALL PRIVILEGES ON infosoap.* TO 'infosoap'@'127.0.0.1' IDENTIFIED BY 'wpAdmin@2018' WITH GRANT OPTION;
-	FLUSH PRIVILEGES;
-	
 5. Wordpress
 
 # wp cli update
