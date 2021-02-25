@@ -1334,6 +1334,26 @@ TODO: send mail success from office server, failed from cloud server.
 outlook.com spam the virtualbox postfix, while qq mail accepted !!!
 outlook.com spam the linode postfix, while qq mail accepted !!!
 
+
+Telnet with postfix:
+
+# telnet 127.0.0.1 25
+Trying 127.0.0.1...
+Connected to 127.0.0.1.
+Escape character is '^]'.
+helo mail.wq.com
+250 mail.wq.com
+mail from:<root@ptbird.com.cn>
+250 2.1.0 Ok
+rcpt to:feisun@westwin.com
+250 2.1.5 Ok
+data
+354 End data with <CR><LF>.<CR><LF>
+hello
+.
+quit
+
+
 33. CORS with pumpkin
 
 https://zhuanlan.zhihu.com/p/179281276
