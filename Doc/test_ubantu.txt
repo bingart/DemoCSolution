@@ -1,0 +1,44 @@
+test of ubantu
+
+0. ssh
+1. install python3
+2. postfix
+
+
+0. ssh
+
+# ps -ef | grep "sshd"   -- check sshd running
+poweroff os
+网络配置 - NAT - 配置端口转发 - 添加端口转发规则
+名称: Rule1
+协议: TCP
+主机IP: 空白, 默认localhost
+主机端口: 8022
+子系统端口: 22
+子系统IP: 空白, 默认NAT IP地址
+重启
+开始Windows防火墙For VirtualBox
+
+CMD> netstat -an | more     --- 8022 listening
+CMD> ssh localhost:22
+
+1. python3
+
+# sudo apt install python3
+# sudo apt-get upgrade
+# sudo apt isstall python3-pip
+
+2. postfix
+
+# sudo apt install postfix
+
+select internet mail
+
+validate:
+
+# sudo telnet 127.0.0.1 25
+> mail from: feisun@westwin.com
+> rctp to: sunfei@tlvstream.com
+> data
+> .
+> quit
