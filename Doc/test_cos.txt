@@ -1303,6 +1303,7 @@ refer: https://askubuntu.com/questions/394724/where-are-the-postfix-log-files
 refer: http://rtcamp.com/tutorials/mail/postfix-debugging/
 refer: https://unix.stackexchange.com/questions/165201/postfix-no-longer-logs-to-var-log-mail-after-it-has-been-deleted-and-re-created
 Postfix Performance Tuning: http://www.postfix.org/TUNING_README.html#hammer
+refer: https://www.looklinux.com/how-to-purge-flush-delete-postfix-queue-mail/
 
 # sudo yum install postfix
 # sudo vi /etc/postfix/main.cf
@@ -1353,6 +1354,29 @@ data
 hello
 .
 quit
+
+
+flush or purge the postfix mail queue
+# postfix -f
+# postfix flush
+
+Check Mail Queue
+# mailq
+
+Remove All Mail From Queue
+# postsuper -d ALL
+
+Delete An Individual Email From The Queue
+# postqueue -p
+Sample output:
+5642B4F47* 1583500 Fri Sep  8 09:37:27  xxxxxx@xxxxxxx.com
+                                         rrrrrrrrr@hotmail.com
+93dFADFAR* 1535730 Fri Sep  8 08:36:53  xxxxxx@xxxxxxx.com
+                                         yyyyyyyy@hotmail.com
+# postsuper -d 5642B4F47
+
+Delete All Deferred mails
+# postsuper -d ALL deferred
 
 
 33. CORS with pumpkin
