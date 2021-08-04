@@ -4,6 +4,7 @@
 3. PHP7
 4. MySQL
 5. Wordpress
+5.1 wordpress account
 6. Site Configuration
 6.1 Theme
 6.2 Plugins
@@ -88,6 +89,9 @@ server {
 
 http://wp_woo.com
 http://wp_woo.com/wp-admin/
+
+5.1 wordpress account
+缺省均使用域名关键词/wpAdmin@2018登陆
 
 6. Site Customize
 
@@ -213,7 +217,7 @@ echo "backup complete"
 
 8.2 import
 
-# mysql -u root -p wp_woo < wp_woo.
+# mysql -u root -p wp_woo < wp_woo.sql
 
 Backup List:
 
@@ -277,6 +281,9 @@ P@ssw0rd
 手机端：登陆微店店长版APP - 店铺管理 - 店铺资料 -【微店开店证明】- 保存图片下载即可；
 网页端：登陆网页d.weidian.com - 左侧菜单点击【设置】- 选择店铺信息 -【微店开店证明】 - 保存图片下载即可；
 https://d.weidian.com/weidian-pc/weidian-loader/#/pc-vue-info/shopText
+
+学生闹钟
+https://detail.1688.com/offer/530483392530.html?spm=a261y.7663282.trade-type-tab.1.321b5c6534seSH&sk=order
 
 11. Email
 
