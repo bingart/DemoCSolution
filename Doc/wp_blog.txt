@@ -1,0 +1,13 @@
+1 install blocksy
+
+a. install new template - add new - select blocksy
+b. click install, click active
+c. click install blocksy companion plugin
+d. never miss import update, Allow & Continue OR Skip, click skip
+e. dashboard - blocksy, stay updated, click Allow & Continue
+f. dashboard - blocksy - extensions, active Cookie Consent, active Widget
+g. dashboard - blocksy - starter sites, blocksy news, preview, click import
+i. enable install child theme (by default), click next
+j. enable install & active plugin, Gutenburg Blocks & WPForm, click next
+k. enable install plugin & Widget & Content, enable clean install, click install
+l. click view sites
