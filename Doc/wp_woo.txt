@@ -78,7 +78,7 @@ server {
 # mkdir /data/wp-app/wp_woo
 # cd /data/wp-app/wp_woo
 # wp core download --allow-root
-# wp config create --dbname=wp_woo --dbuser=wp_woo --dbpass=wpAdmin@2018 --dbhost=172.16.40.139 --allow-root
+# wp config create --dbname=wp_woo --dbuser=wp_woo --dbpass=wpAdmin@2018 --dbhost=127.0.0.1 --allow-root
 # wp core install --url=wp_woo.com --title=Woo --admin_user=wp_woo --admin_password=wpAdmin@2018 --admin_email=feisun@westwin.com --allow-root
 # wp core version --allow-root
 # wp core update --allow-root
