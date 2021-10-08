@@ -1,0 +1,43 @@
+User Guide for EDM
+
+1. post-url
+
+post-url is mandantory to track available email address from traffic.
+
+a. create table by wp/post-url/sql/wp_urls.sql/wp_urls
+b. install post-url plugin
+c. see list of url redirects: https://domain/wp-content/plugins/post-url/list.php
+d. click create to create new redirect url:
+	title: the title
+	description: the description
+	target: the final url
+
+2. upload php (optional)
+
+a. move upload php to https://domain/mail
+b. create uploaded target folder: domain/mail/uploaded
+
+3. generate job files
+
+see py_mail project/README.txt
+
+a. create HTML file with template, see py_mail/resources/*.html
+b. create image file by meituxiuxiu, like py_mail/resources/*.jpg, size < 60K
+c. generate task.txt
+	c.1 start localhost mongodb
+	c.2 update task.py::add_mail, insert new mail with post-url list item
+	c.3 drop localhost mongodb::ZDBEDM::task collection
+	c.4 update task.py::add_tasks, update address_filter to select target audiences, update mail_filter to select mail
+	c.5 invoke task.py::add_tasks, generate task collection for each audience
+	c.6 invoke task.py::dump_tasks, to dump all tasks into task.txt
+d. zip HTML/image/task.txt
+
+4. run job
+
+a. upload zip to job server via sftp, or, download zip from server from: https://domain/mail/uploaded/job.zip
+b. unzip
+c. move HTML/image to /home/feisun/mail/resources
+d. move task.txt to /home/feisun/mail
+e. remove task.donw.txt to clean log
+f. systemctl status postfix
+g. python3 job.py
