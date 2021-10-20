@@ -43,6 +43,7 @@ TOC
 33. CORS with pumpkin
 34. CORS with CDN
 35. pypcap
+36. puppeteer
 
 
 
@@ -1478,3 +1479,31 @@ centos install
 
 # sudo yum install libpcap-devel  --- to fix error "pcap.h" not found
 # sudo yum install python3-devel  --- to fix error "python.h" not found
+
+36. puppeteer
+
+install high version nodejs
+# sudo yum remove nodejs
+# curl –sL https://rpm.nodesource.com/setup_10.x | sudo bash -
+# sudo yum install -y nodejs
+# mkdir headless
+# cd headless
+# node init -y
+# sudo yum install pango.x86_64 libXcomposite.x86_64 libXcursor.x86_64 libXdamage.x86_64 libXext.x86_64 libXi.x86_64 libXtst.x86_64 cups-libs.x86_64 libXScrnSaver.x86_64 libXrandr.x86_64 GConf2.x86_64 alsa-lib.x86_64 atk.x86_64 gtk3.x86_64 -y
+# npm install puppeteer    ---- will install chromium
+# vi index.js
+const puppeteer = require('puppeteer');
+(async () => {
+  //const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({
+  args: ['--no-sandbox', '--disable-setuid-sandbox'],
+});
+  const page = await browser.newPage();
+  await page.goto('https://www.clinicianblog.com', {
+    waitUntil: 'networkidle2',
+  });
+  await page.pdf({ path: 'hn.pdf', format: 'a4' });
+
+  await browser.close();
+})();
+# node index.js
