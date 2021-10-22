@@ -1482,10 +1482,28 @@ centos install
 
 36. puppeteer
 
+refer: https://www.inmotionhosting.com/support/product-guides/dedicated-hosting/delete-repos-centos/
+clean old version nodejs and repo
+# sudo yum remove nodejs
+# ll /etc/yum.repos.d/
+check repo name
+# rpm -qf /etc/yum.repos.d/nodesource-el7.repo
+remove repo
+# sudo yum remove nodesource-release-el7-1.noarch
+clear repo cache, otherwise old repo still working !!!
+# sudo yum clean all
+
 install high version nodejs
 # sudo yum remove nodejs
-# curl –sL https://rpm.nodesource.com/setup_10.x | sudo bash -
-# sudo yum install -y nodejs
+For Latest Release
+# yum install -y gcc-c++ make 
+# curl -sL https://rpm.nodesource.com/setup_16.x | sudo -E bash - 
+For Stable Release
+# yum install -y gcc-c++ make 
+# curl -sL https://rpm.nodesource.com/setup_14.x | sudo -E bash -
+# sudo yum install nodejs
+# node -v
+# npm -v
 # mkdir headless
 # cd headless
 # node init -y
